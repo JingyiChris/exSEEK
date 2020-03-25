@@ -1,6 +1,6 @@
 # exSEEK
 
-**exRNA Biomarker Discovery for Liquid Biopsy**
+**exSEEK is an integrated computational framework to discover and evaluate exRNA biomarkers for liquid biopsy**
 
 > **Note:**
 > * The exSEEK program starts from a data matrix of gene expression (read counts of each gene in each sample) and performs normalization, feature selection and evaluation. 
