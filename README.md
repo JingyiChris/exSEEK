@@ -1,6 +1,13 @@
 # exSEEK
 
-**exSEEK is an integrated computational framework to discover and evaluate exRNA biomarkers for liquid biopsy**
+exSEEK is an integrated computational framework to discover and evaluate exRNA biomarkers for liquid biopsy.
+The exSEEK framework consists of:
++ Pre_processing:
+   
+   + Building index with various types of genomes and annotations.
+   + Quality control and removing adaptors. [`exseek.py quality_control`] [`exseek.py cutadapt`]
+   + Sequential mapping for small/long RNA-seq. [`exseek.py mapping`]
+   + Counting expression matrix. [`exseek.py count_matrix`]
 
 > **Note:**
 > * The exSEEK program starts from a data matrix of gene expression (read counts of each gene in each sample) and performs normalization, feature selection and evaluation. 
