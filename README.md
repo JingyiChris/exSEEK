@@ -9,6 +9,13 @@ The exSEEK framework consists of:
    + Quality control and removing adaptors. [`exseek.py quality_control`] [`exseek.py cutadapt`]
    + Sequential mapping for small/long RNA-seq. [`exseek.py mapping`]
    + Counting expression matrix. [`exseek.py count_matrix`]
++ Main function:
+   
+   + Peak calling for fragments of long RNAs. [`exseek.py call_domains`]
+   + Normalization and batch removal. [`exseek.py normalization`]
+   + Feature selection. [`exseek.py feature_selection`]
+   + Clustering and biomarker discovering. [``]
+   
 
 > **Note:**
 > * The exSEEK program starts from a data matrix of gene expression (read counts of each gene in each sample) and performs normalization, feature selection and evaluation. 
