@@ -22,11 +22,12 @@ Table of Contents:
 * [Usage](#Usage)
   * [1. Index preparing](#1._Index_preparing)
   * [2. Small RNA-seq mapping](#2._Small_RNA-seq_mapping)
-  * [3. Long RNA-seq mapping](#3._Long_RNA-seq_mapping)
-  * [4. Peak calling for fragments](#4._Peak_calling_for_fragments)
-  * [5. Normalization and batch removal](#5._Normalization_and_batch_removal)
-  * [6. Feature selection](#6._Feature_selection)
-  * [7. Evaluation for biomarkers](#7._Evaluation_for_biomarkers)
+  * [3. Peak calling](#3._Peak_calling)
+  * [4. Long RNA-seq mapping](#4._Long_RNA-seq_mapping)
+  * [5. Counting expression matrix](#5._Counting expression matrix)
+  * [6. Normalization and batch removal](#5._Normalization_and_batch_removal)
+  * [7. Feature selection](#6._Feature_selection)
+  * [8. Evaluation for biomarkers](#7._Evaluation_for_biomarkers)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
 
@@ -182,9 +183,11 @@ exseek.py quality_control_clean -d example
 exseek.py mapping -d example
 ```
 > **Note:**
+> * Make sure that the parameter `small_rna` is `True` in `example_data/config/example.yaml`.
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
-> * You can check he summary of read counts mapped to all RNA types for all smaples with the file `example_data/output/example/summary/read_counts.txt`.
+> * You can check the read length distribution for each type of RNA in folder `example_data/output/example/stats/mapped_read_length/`.
+> * You can also check the summary of read counts mapped to all RNA types for all smaples with the file `example_data/output/example/summary/read_counts.txt`.
 
 #### 2.7 Generate BigWig files
 
@@ -192,42 +195,45 @@ exseek.py mapping -d example
 exseek.py bigwig -d example
 ```
 
-#### 2.8 Call domains (peaks)
-exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differntail expression analysis and combined into the following expression matrix and serve as potential biomarkers.
+### 3. Peak (domains) Calling
+exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differntail expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 
 ```bash
 exseek.py call_domains -d example
 ```
 
-> **Notes:**
-> * Domain calling parameters in `example_data/config/example.yaml`:
->> * `call_domain_pvalue: "05"`: adjusted p-value threshold for defining peaks.
->> * `bin_size: 20`: size of bins for calculating read coverage
->> * `cov_threshold: 0.05`: The fraction of samples that have the called peak. Peaks with cov_threshold above 0.05 are dedined as domains.
-> * Output files:
->> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
->> * `example_data/output/example/domains_localmax/domains.bed` contains .
+**Notes:**
+* Domain calling parameters in `example_data/config/example.yaml`:
+> * `call_domain_pvalue: "05"`: adjusted p-value threshold for defining peaks.
+> * `bin_size: 20`: size of bins for calculating read coverage
+> * `cov_threshold: 0.05`: The fraction of samples that have the called peak. Peaks with cov_threshold above 0.05 are dedined as domains.
+* Output files:
+> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
+> * `example_data/output/example/domains_localmax/domains.bed` contains .
 
-#### 2.9 Count matrix
+### 4. Long RNA-seq mapping
+
+The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above commandlines for long RNA-seq by setting `small_rna` to `False` in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, beacuse there are no significantly conserved domains detected in long RNA-seq datasets. 
+
+### 5. Counting expression matrix
 
 ```bash
 exseek.py count_matrix -d example
 ```
-> **Notes:**
-> * The default methods for counting expression matrix includes:
->> * `mirna_and_domains`:
->> * `domains_long`:
->> * `transcript`:
->> * `transcript_mirna`:
->> * `domains_long`:
-
-#### 2.10 Combine domains with small RNA
-
 ```bash
 exseek.py combine_domains -d example
 ```
 
-### 3.Long RNA-seq mapping
+**Notes:**
+* The default methods for counting expression matrix includes:
+> * `mirna_and_domains`:
+> * `domains_long`:
+> * `transcript`:
+> * `transcript_mirna`:
+> * `domains_long`:
+
+### 6. Normalization and batch removal
+
 Run:
 
 ```bash
