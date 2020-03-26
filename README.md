@@ -40,7 +40,7 @@ For easy installation, you can use the [exSEEK image](https://hub.docker.com/r/l
 ```bash
 docker pull ltbyshi/exseek
 ```
-All required software and packages are already installed in docker, so there is no more requirements. 
+All required software and packages are already installed in docker, so there are no more requirements. 
 
 To test the installation and get information about the command-line interface of exSEEK, you can execute:
 
@@ -82,7 +82,7 @@ You can create a bash script named `exseek` and set the script executable:
 #! /bin/bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
 ```
-After adding the file to one of the directory in the `$PATH` variable, you can simply run: `exseek`.
+After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
 
 ### Input files
 
@@ -115,10 +115,10 @@ example_data/
 ## Usage
 ### Index preparing
 
-exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you wanted:
+exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
 
 ### Small RNA-seq mapping
-
+### Long RNA-seq mapping
 Run:
 
 ```bash
@@ -178,5 +178,4 @@ This program is licensed with commercial restriction use license. Please see the
 
 ## Citation
 
-Binbin Shi, Jingyi Cao, Xupeng Chen and Zhi John Lu (2019) exSEEK: an integrative computational framework for identifying extracellular RNA biomarkers in liquid biopsy
-
+Binbin Shi, Jingyi Cao, Xupeng Chen and Zhi John Lu (2019) exSEEK: an integrative computational framework for identifying extracellular
