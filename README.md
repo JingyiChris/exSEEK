@@ -105,8 +105,8 @@ example_data/
 ```
 
 > **Note:**
-> * `config/example.yaml`: configuration file containing frequently changed parameters, such as file paths and mapping parameters.
-> * `config/default_config.yaml`: configuration file containing additional detailed parameters for each step.
+> * `config/example.yaml`: configuration file with frequently changed parameters, such as file paths and mapping parameters.
+> * `config/default_config.yaml`: configuration file with additional detailed parameters for each step.
 > * `data/example/batch_info.txt`: table of batch information.
 > * `data/example/compare_groups.yaml`: configuration file for definition of positive and negative samples.
 > * `data/example/sample_classes.txt`: table of sample labels.
@@ -114,6 +114,10 @@ example_data/
 
 ## Usage
 ### Index preparing
+
+exSEEK docker contains a varitey of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these .fa and .gtf files to generate the index you wanted:
+
+### Small RNA-seq mapping
 
 Run:
 
