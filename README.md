@@ -20,13 +20,13 @@ Table of Contents:
 
 * [Installation](#istallation)
 * [Usage](#Usage)
-  * [Index preparing](#Index_preparing)
-  * [Small RNA-seq mapping](#Small_RNA-seq_mapping)
-  * [Long RNA-seq mapping](#Long_RNA-seq_mapping)
-  * [Peak calling for fragments](#Peak_calling_for_fragments)
-  * [Normalization and batch removal](Normalization_and_batch_removal)
-  * [Feature selection](Feature_selection)
-  * [Evaluation for biomarkers](Evaluation_for_biomarkers)
+  * [1.Index preparing](#1.Index_preparing)
+  * [2.Small RNA-seq mapping](#2.Small_RNA-seq_mapping)
+  * [3.Long RNA-seq mapping](#3.Long_RNA-seq_mapping)
+  * [4.Peak calling for fragments](#4.Peak_calling_for_fragments)
+  * [5.Normalization and batch removal](5.Normalization_and_batch_removal)
+  * [6.Feature selection](6.Feature_selection)
+  * [7.Evaluation for biomarkers](7.Evaluation_for_biomarkers)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
 
@@ -40,9 +40,7 @@ For easy installation, you can use the [exSEEK image](https://hub.docker.com/r/l
 ```bash
 docker pull ltbyshi/exseek
 ```
-All required software and packages are already installed in docker, so there are no more requirements. 
-
-To test the installation and get information about the command-line interface of exSEEK, you can execute:
+All required software and packages are already installed in docker, so there are no more requirements. To test the installation and get information about the command-line interface of exSEEK, you can execute:
 
 ```bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py -h
@@ -110,15 +108,117 @@ example_data/
 > * `data/example/batch_info.txt`: table of batch information.
 > * `data/example/compare_groups.yaml`: configuration file for definition of positive and negative samples.
 > * `data/example/sample_classes.txt`: table of sample labels.
-> * `output/example/`: input matrix of read counts
+> * `output/example/`: input matrix of read counts.
 
 ## Usage
-### Index preparing
+
+You can use the provided `example_data` to run exSEEK.
+
+### 1.Index preparing
 
 exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
 
-### Small RNA-seq mapping
-### Long RNA-seq mapping
+### 2.Small RNA-seq mapping
+#### Update sequential mapping order
+
+The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
+
+```yaml
+rna_types: [rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
+  snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
+```
+
+You can change the mapping order by add a `rna_types` variable in `config/${dataset}.yaml`. For example, add spike-in sequences as the first RNA type:
+
+```yaml
+rna_types: [spikein, rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
+  snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
+```
+```bash
+exseek.py update_sequential_mapping -d example
+```
+
+### Add new reference sequence
+
+If a new RNA type is added, you should also add a sequence file in FASTA format: `${genome_dir}/fasta/${rna_type}.fa`. Then build a FASTA index \(`${genome_dir}/fasta/${rna_type}.fa.fai`\):
+
+```bash
+samtools faidx ${genome_dir}/fasta/${rna_type}.fa
+```
+
+Then build a bowtie2 index \(`${genome_dir}/index/bowtie2/${rna_type}`\):
+
+```bash
+bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${rna_type}
+```
+
+### Quality control \(before adaptor removal\)
+
+```bash
+exseek.py quality_control -d example
+```
+> **Note:**
+> * The detailed results for each sample are in `example_data/output/example/fastqc`. You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
+
+### Remove adapter
+
+```bash
+exseek.py cutadapt -d example
+```
+> **Note:**
+> * Make sure that you have added your adaptor information in `example_data/config/example.yaml` file. 
+> * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
+
+### Quality control \(after adapter removal\)
+
+```bash
+exseek.py quality_control_clean -d example
+```
+
+### Mapping
+
+```bash
+exseek.py mapping -d example
+```
+> **Note:**
+> * The output folder `example_data/output/example/gbam` contains genome bam files.
+> * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
+> * You can check he summary of read counts mapped to all RNA types for all smaples with the file `example_data/output/example/summary/read_counts.txt`.
+
+### Generate BigWig files
+
+```bash
+exseek.py bigwig -d example
+```
+
+### Call domains (peaks)
+exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differntail expression analysis and combined into the following expression matrix and serve as potential biomarkers.
+
+```bash
+exseek.py call_domains -d example
+```
+
+> **Notes:**
+> * You can change the domain calling parameters in `example_data/config/example.yaml`:
+   > * `call_domain_pvalue: "05"`: adjusted p-value threshold for defining peaks.
+   > * `bin_size: 20`: size of bins for calculating read coverage
+   > * `cov_threshold: 0.05`: The fraction of samples that have the called peak. Peaks with cov_threshold above 0.05 are dedined as domains.
+> * Output files:
+   > * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
+   > * `example_data/output/example/domains_localmax/domains.bed` contains .
+
+### Count matrix
+
+```bash
+exseek.py count_matrix -d ${dataset}
+```
+
+### Combine domains with small RNA
+
+```bash
+exseek.py combine_domains -d ${dataset}
+```
+### 3.Long RNA-seq mapping
 Run:
 
 ```bash
