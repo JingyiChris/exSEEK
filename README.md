@@ -53,15 +53,15 @@ A helper message is shown:
 usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
                  [--cluster-config CLUSTER_CONFIG]
                  [--cluster-command CLUSTER_COMMAND] [--singularity]  
-                 {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,\
-                 filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,\
+                 {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,
+                 filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,
                  differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
 
-exSeek main program
+exseek main program
 
 positional arguments:
-  {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,\
-  filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,\
+  {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,
+  filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,
   differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
 
 optional arguments:
@@ -70,7 +70,7 @@ optional arguments:
   --config-dir CONFIG_DIR, -c CONFIG_DIR        directory for configuration files
   --cluster                                     submit to cluster
   --cluster-config CLUSTER_CONFIG               cluster configuration file ({config_dir}/cluster.yaml by default)
-  --cluster-command CLUSTER_COMMAND             command for submitting job to cluster (default read from \
+  --cluster-command CLUSTER_COMMAND             command for submitting job to cluster (default read from
                                                 {config_dir}/cluster_command.txt
   --singularity                                 use singularity
 ```
@@ -86,36 +86,34 @@ After adding the file to one of the directory in the `$PATH` variable, you can s
 
 ### Input files
 
-An example can be found in `example_data` directory with the following structure:
+An example of input files can be found in `example_data` directory with the following structure:
 ```
 example_data/
 ├── config
-│   └── example.yaml
+|   ├── example.yaml
+│   └── default_config.yaml
 ├── data
 │   └── example
+|       ├── fastq
 │       ├── batch_info.txt
 │       ├── compare_groups.yaml
 │       ├── sample_classes.txt
 │       └── sample_ids.txt
 └── output
     └── example
-        └── count_matrix
-            └── mirna_and_domains_rna.txt
+        └── ...
 ```
 
 > **Note:**
-> * `config/example.yaml`: configuration file
-> * `data/example/batch_info.txt`: table of batch information
-> * `data/example/compare_groups.yaml`: configuration file for definition of positive and negative samples
-> * `data/example/sample_classes.txt`: table of sample labels
-> * `output/example/count_matrix/mirna_and_domains_rna.txt`: input matrix of read counts
+> * `config/example.yaml`: configuration file containing frequently changed parameters, such as file paths and mapping parameters.
+> * `config/default_config.yaml`: configuration file containing additional detailed parameters for each step.
+> * `data/example/batch_info.txt`: table of batch information.
+> * `data/example/compare_groups.yaml`: configuration file for definition of positive and negative samples.
+> * `data/example/sample_classes.txt`: table of sample labels.
+> * `output/example/`: input matrix of read counts
 
-You can create your own data directory with the above directory structure. 
-Multiple datasets can be put in the same directory by replacing "example" with your own dataset names.
-
-More information about input and output files can be found on [File Format](docs/file_format.md) page.
-
-### Normalization
+## Usage
+### Index preparing
 
 Run:
 
