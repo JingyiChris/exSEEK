@@ -40,8 +40,45 @@ For easy installation, you can use the [exSEEK image](https://hub.docker.com/r/l
 ```bash
 docker pull ltbyshi/exseek
 ```
+All required software and packages are already installed in docker, so there is no more requirements. 
 
-Alternatively, you can use use [singularity](https://singularity.lbl.gov/) or [udocker](https://github.com/indigo-dc/udocker) to run the container for Linux kernel < 3 or if you don't have permission to use docker.
+To test the installation and get information about the command-line interface of exSEEK, you can execute:
+
+```bash
+docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py -h
+```
+A helper message is shown:
+
+```bash
+usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
+                 [--cluster-config CLUSTER_CONFIG]
+                 [--cluster-command CLUSTER_COMMAND] [--singularity]  
+                 {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,\
+                 filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,\
+                 differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
+
+exSeek main program
+
+positional arguments:
+  {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,\
+  filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,\
+  differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --dataset DATASET, -d DATASET
+                        dataset name
+  --config-dir CONFIG_DIR, -c CONFIG_DIR
+                        directory for configuration files
+  --cluster             submit to cluster
+  --cluster-config CLUSTER_CONFIG
+                        cluster configuration file ({config_dir}/cluster.yaml
+                        by default)
+  --cluster-command CLUSTER_COMMAND
+                        command for submitting job to cluster (default read
+                        from {config_dir}/cluster_command.txt
+  --singularity         use singularity
+```
 
 ## Usage
 
