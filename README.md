@@ -26,9 +26,9 @@ Table of Contents:
   * [3. Peak calling](#3._Peak_calling)
   * [4. Long RNA-seq mapping](#4._Long_RNA-seq_mapping)
   * [5. Counting expression matrix](#5._Counting expression matrix)
-  * [6. Normalization and batch removal](#5._Normalization_and_batch_removal)
-  * [7. Feature selection](#6._Feature_selection)
-  * [8. Evaluation for biomarkers](#7._Evaluation_for_biomarkers)
+  * [6. Normalization and batch removal](#6._Normalization_and_batch_removal)
+  * [7. Feature selection](#7._Feature_selection)
+  * [8. Evaluation for biomarkers](#8._Evaluation_for_biomarkers)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
 
