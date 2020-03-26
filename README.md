@@ -13,24 +13,20 @@ The exSEEK framework consists of:
    
    + Peak calling for fragments of long RNAs. [`exseek.py call_domains`]
    + Normalization and batch removal. [`exseek.py normalization`]
-   + Feature selection. [`exseek.py feature_selection`]
-   + Clustering and biomarker discovering. [``]
+   + Feature selection and machine learning. [`exseek.py feature_selection`]
+   + Evaluation for selected biomarker panels. [`exseek.py evaluate_features`]
    
-
-> **Note:**
-> * The exSEEK program starts from a data matrix of gene expression (read counts of each gene in each sample) and performs normalization, feature selection and evaluation. 
-> * Meanwhile, we provide some pipelines and QC steps for the [pre-process](https://github.com/lulab/exSEEK_docs/tree/master/pre-process) of exRNA-seq (including long and short  cfRNA-seq/exoRNA-seq) raw data. 
-> * We also recommend other alternatives for the pre-process, such as [exceRpt](https://github.com/gersteinlab/exceRpt), that is specifically developed for the process of exRNA-seq raw reads.
-
-
 **Table of Contents:**
 
 * [Installation](#istallation)
 * [Usage](#Usage)
-  * [Input files](#input-files)
-  * [Normalization](#normalization)
-  * [Feature selection](#feature-selection)
-  * [Advanced usage](#advanced-usage)
+  * [Index preparing](#Index_preparing)
+  * [Small RNA-seq mapping](#Small_RNA-seq_mapping)
+  * [Long RNA-seq mapping](#Long_RNA-seq_mapping)
+  * [Peak calling for fragments](#Peak_calling_for_fragments)
+  * [Normalization and batch removal](Normalization_and_batch_removal)
+  * [Feature selection](Feature_selection)
+  * [Evaluation for biomarkers](Evaluation_for_biomarkers)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
 
