@@ -119,7 +119,7 @@ You can use the provided `example_data` to run exSEEK.
 exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
 
 ### 2.Small RNA-seq mapping
-#### Update sequential mapping order
+#### 2.1 Update sequential mapping order
 
 The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
 
@@ -138,7 +138,7 @@ rna_types: [spikein, rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA,
 exseek.py update_sequential_mapping -d example
 ```
 
-#### Add new reference sequence
+#### 2.2 Add new reference sequence
 
 If a new RNA type is added, you should also add a sequence file in FASTA format: `${genome_dir}/fasta/${rna_type}.fa`. Then build a FASTA index \(`${genome_dir}/fasta/${rna_type}.fa.fai`\):
 
@@ -152,7 +152,7 @@ Then build a bowtie2 index \(`${genome_dir}/index/bowtie2/${rna_type}`\):
 bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${rna_type}
 ```
 
-#### Quality control \(before adaptor removal\)
+#### 2.3 Quality control \(before adaptor removal\)
 
 ```bash
 exseek.py quality_control -d example
@@ -161,7 +161,7 @@ exseek.py quality_control -d example
 > * The detailed results for each sample are in `example_data/output/example/fastqc`. 
 > * You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
 
-#### Remove adapter
+#### 2.4 Remove adapter
 
 ```bash
 exseek.py cutadapt -d example
@@ -170,13 +170,13 @@ exseek.py cutadapt -d example
 > * Make sure that you have added your adaptor information in `example_data/config/example.yaml` file. 
 > * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
 
-#### Quality control \(after adapter removal\)
+#### 2.5 Quality control \(after adapter removal\)
 
 ```bash
 exseek.py quality_control_clean -d example
 ```
 
-#### Mapping
+#### 2.6 Mapping
 
 ```bash
 exseek.py mapping -d example
@@ -186,13 +186,13 @@ exseek.py mapping -d example
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
 > * You can check he summary of read counts mapped to all RNA types for all smaples with the file `example_data/output/example/summary/read_counts.txt`.
 
-#### Generate BigWig files
+#### 2.7 Generate BigWig files
 
 ```bash
 exseek.py bigwig -d example
 ```
 
-#### Call domains (peaks)
+#### 2.8 Call domains (peaks)
 exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differntail expression analysis and combined into the following expression matrix and serve as potential biomarkers.
 
 ```bash
@@ -208,13 +208,13 @@ exseek.py call_domains -d example
 >> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
 >> * `example_data/output/example/domains_localmax/domains.bed` contains .
 
-### Count matrix
+#### 2.9 Count matrix
 
 ```bash
 exseek.py count_matrix -d ${dataset}
 ```
 
-### Combine domains with small RNA
+#### 2.10 Combine domains with small RNA
 
 ```bash
 exseek.py combine_domains -d ${dataset}
