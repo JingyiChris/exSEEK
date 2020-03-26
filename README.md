@@ -20,13 +20,13 @@ Table of Contents:
 
 * [Installation](#istallation)
 * [Usage](#Usage)
-  * [1.Index preparing](#1.Index_preparing)
-  * [2.Small RNA-seq mapping](#2.Small_RNA-seq_mapping)
-  * [3.Long RNA-seq mapping](#3.Long_RNA-seq_mapping)
-  * [4.Peak calling for fragments](#4.Peak_calling_for_fragments)
-  * [5.Normalization and batch removal](5.Normalization_and_batch_removal)
-  * [6.Feature selection](6.Feature_selection)
-  * [7.Evaluation for biomarkers](7.Evaluation_for_biomarkers)
+  * [1. Index preparing](#1._Index_preparing)
+  * [2. Small RNA-seq mapping](#2._Small_RNA-seq_mapping)
+  * [3. Long RNA-seq mapping](#3._Long_RNA-seq_mapping)
+  * [4. Peak calling for fragments](#4._Peak_calling_for_fragments)
+  * [5. Normalization and batch removal](#5._Normalization_and_batch_removal)
+  * [6. Feature selection](#6._Feature_selection)
+  * [7. Evaluation for biomarkers](#7._Evaluation_for_biomarkers)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
 
@@ -211,14 +211,22 @@ exseek.py call_domains -d example
 #### 2.9 Count matrix
 
 ```bash
-exseek.py count_matrix -d ${dataset}
+exseek.py count_matrix -d example
 ```
+> **Notes:**
+> * The default methods for counting expression matrix includes:
+>> * `mirna_and_domains`:
+>> * `domains_long`:
+>> * `transcript`:
+>> * `transcript_mirna`:
+>> * `domains_long`:
 
 #### 2.10 Combine domains with small RNA
 
 ```bash
-exseek.py combine_domains -d ${dataset}
+exseek.py combine_domains -d example
 ```
+
 ### 3.Long RNA-seq mapping
 Run:
 
