@@ -15,8 +15,8 @@ The exSEEK framework consists of:
    + Normalization and batch removal. [`exseek.py normalization`]
    + Feature selection and machine learning. [`exseek.py feature_selection`]
    + Evaluation for selected biomarker panels. [`exseek.py evaluate_features`]
-   
-**Table of Contents:**
+
+Table of Contents:
 
 * [Installation](#istallation)
 * [Usage](#Usage)
