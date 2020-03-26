@@ -65,52 +65,24 @@ positional arguments:
   differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --dataset DATASET, -d DATASET
-                        dataset name
-  --config-dir CONFIG_DIR, -c CONFIG_DIR
-                        directory for configuration files
-  --cluster             submit to cluster
-  --cluster-config CLUSTER_CONFIG
-                        cluster configuration file ({config_dir}/cluster.yaml
-                        by default)
-  --cluster-command CLUSTER_COMMAND
-                        command for submitting job to cluster (default read
-                        from {config_dir}/cluster_command.txt
-  --singularity         use singularity
-```
-
-## Usage
-
-Run the main program `exseek.py` from docker:
-
-```bash
-docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py
+  -h, --help                                    show this help message and exit
+  --dataset DATASET, -d DATASET                 dataset name
+  --config-dir CONFIG_DIR, -c CONFIG_DIR        directory for configuration files
+  --cluster                                     submit to cluster
+  --cluster-config CLUSTER_CONFIG               cluster configuration file ({config_dir}/cluster.yaml by default)
+  --cluster-command CLUSTER_COMMAND             command for submitting job to cluster (default read from \
+                                                {config_dir}/cluster_command.txt
+  --singularity                                 use singularity
 ```
 
 The exSEEK directory was cloned to /apps/exseek in the docker.
-
 You can create a bash script named `exseek` and set the script executable:
+
 ```bash
 #! /bin/bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
 ```
-
 After adding the file to one of the directory in the `$PATH` variable, you can simply run: `exseek`.
-
-
-The basic usage of exSEEK is:
-
-```bash
-exseek ${step_name} -d ${dataset}
-```
-
-> **Note:**
-> * Other arguments are passed to [snakemake](https://snakemake.readthedocs.io/en/stable/)
-> * Specify number of processes to run in parallel with *-j*
-> * `${step_name}` is one of `normalization` and `cross_validation`.
-> * `${dataset}` is the name of your dataset that should match the prefix of your configuration file described in the following section.
-
 
 ### Input files
 
