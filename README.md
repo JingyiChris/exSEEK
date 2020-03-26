@@ -205,7 +205,7 @@ exseek.py bigwig -d example
 ---
 
 ### 3. Peak (domains) Calling
-exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differntail expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
+exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 
 ```bash
 exseek.py call_domains -d example
