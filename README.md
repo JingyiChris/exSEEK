@@ -15,6 +15,7 @@ The exSEEK framework consists of:
    + Normalization and batch removal. [`exseek.py normalization`]
    + Feature selection and machine learning. [`exseek.py feature_selection`]
    + Evaluation for selected biomarker panels. [`exseek.py evaluate_features`]
+---
 
 Table of Contents:
 
@@ -83,6 +84,8 @@ docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$
 ```
 After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
 
+---
+
 ### Input files
 
 An example of input files can be found in `example_data` directory with the following structure:
@@ -111,6 +114,8 @@ example_data/
 > * `data/example/sample_classes.txt`: table of sample labels.
 > * `output/example/`: input matrix of read counts.
 
+---
+
 ## Usage
 
 You can use the provided `example_data` to run exSEEK.
@@ -118,6 +123,8 @@ You can use the provided `example_data` to run exSEEK.
 ### 1.Index preparing
 
 exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
+
+---
 
 ### 2.Small RNA-seq mapping
 #### 2.1 Update sequential mapping order
@@ -195,6 +202,8 @@ exseek.py mapping -d example
 exseek.py bigwig -d example
 ```
 
+---
+
 ### 3. Peak (domains) Calling
 exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differntail expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 
@@ -211,9 +220,13 @@ exseek.py call_domains -d example
 > * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
 > * `example_data/output/example/domains_localmax/domains.bed` contains .
 
+---
+
 ### 4. Long RNA-seq mapping
 
 The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above commandlines for long RNA-seq by setting `small_rna` to `False` in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, beacuse there are no significantly conserved domains detected in long RNA-seq datasets. 
+
+---
 
 ### 5. Counting expression matrix
 
@@ -231,6 +244,8 @@ exseek.py combine_domains -d example
 > * `transcript`:
 > * `transcript_mirna`:
 > * `domains_long`:
+
+---
 
 ### 6. Normalization and batch removal
 
