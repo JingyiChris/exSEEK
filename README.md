@@ -127,11 +127,13 @@ example_data/
 > * `data/example/sample_classes.txt`: table of sample labels.
 > * `output/example/`: output folder.
 
+---
 
 ### Index preparing
 
 exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
 
+---
 
 ### Small RNA-seq mapping
 
@@ -207,6 +209,7 @@ exseek.py mapping -d example
 exseek.py bigwig -d example
 ```
 
+---
 
 ### Peak (domains) Calling
 
@@ -242,10 +245,13 @@ The `domains.bed` file looks like:
 |ENST00000025301.3 | 8580 | 8597 | peak_4 | 37.2353 | + |
 |ENST00000192788.5 | 2649 | 2665 | peak_5 | 72.5625 | + |
 
+---
+
 ### Long RNA-seq mapping
 
 The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
 
+---
 
 ### Counting expression matrix
 
@@ -264,6 +270,7 @@ exseek.py combine_domains -d example
 > * `transcript_mirna`:
 > * `domains_long`:
 
+---
 
 ### Normalization and batch removal
 
@@ -307,6 +314,7 @@ And the `mKNN` score files look like this:
 
 After deciding the most proper combination of normalization and batch removal methods, you can specify the exact normalization method by setting the value of `normalization_method` and the batch removal method by setting the value of `batch_removal_method` in `config/sample.yaml`.
 
+---
 
 ### Feature selection and biomarker evaluation
 
