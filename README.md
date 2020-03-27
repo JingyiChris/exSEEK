@@ -234,13 +234,13 @@ The `recurrence.bed` file looks like:
 | ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
 The `domains.bed` file looks like:
-| Transcript ID | transStart | transEnd | | Peak_ID | |strand |
+| Transcript ID | transStart | transEnd | After_merged Peak_ID | Ave_frequency | strand |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-|ENST00000006015.3   1506    1523    peak_605    14.2353 +
-ENST00000006015.3   1971    1986    peak_606    10  +
-ENST00000008938.4   20  35  peak_607    7   +
-ENST00000025301.3   8580    8597    peak_608    37.2353 +
-ENST00000192788.5   2649    2665    peak_609    72.5625 +
+| ENST00000006015.3 | 1506 | 1523 | peak_1 | 14.2353 | + |
+|ENST00000006015.3 | 1971 |1986 |peak_2 | 10 | + |
+|ENST00000008938.4 | 20 | 35 |peak_3 | 7 | + |
+|ENST00000025301.3 | 8580 | 8597 | peak_4 | 37.2353 | + |
+|ENST00000192788.5 | 2649 | 2665 | peak_5 | 72.5625 | + |
 
 ### Long RNA-seq mapping
 
