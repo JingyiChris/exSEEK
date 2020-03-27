@@ -42,7 +42,7 @@ All required software and packages are already installed in docker, so there are
 ```bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py -h
 ```
-The -v flag mounts the current working directory `$PWD` into the `/workspace` in docker image, so you can eaisly check the ouput files in `/workspace` directory after exiting docker.
+The -v flag mounts the current working directory `$PWD` into the `/workspace` in docker image, so you can easily check the output files in `/workspace` directory after exiting docker.
 
 A helper message is shown:
 ```bash
@@ -79,14 +79,13 @@ exseek ${step_name} -d ${dataset}
 > **Note:**
 > * `${step_name}` is one of the step in 'positional arguments'.
 > * `${dataset}` is the name of your dataset that should match the prefix of your configuration file described in the following section.
-> * You can create a bash script named `exseek` and set the script executable:
+
+You can create a bash script named `exseek` and set the script executable: 
 ```bash
 #! /bin/bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
 ```
 After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
-
----
 
 ## Usage
 You can use the provided `example_data` to run exSEEK:
@@ -94,14 +93,14 @@ You can use the provided `example_data` to run exSEEK:
 cp /apps/example_data /workspace
 ```
 
-### Input files
-
-An example of input files can be found in `example_data` directory with the following structure:
+The `example_data` folder has the following structure:
 ```
 example_data/
 ├── config
 |   ├── example.yaml
-│   └── default_config.yaml
+|   ├── default_config.yaml
+│   └── machine_learning.yaml
+
 ├── data
 │   └── example
 |       ├── fastq
@@ -115,35 +114,31 @@ example_data/
 ```
 
 > **Note:**
-> * `config/example.yaml`: configuration file with frequently changed parameters, such as file paths and mapping parameters.
+> * `config/example.yaml`: configuration file with frequently adjusted parameters, such as file paths and mapping parameters.
 > * `config/default_config.yaml`: configuration file with additional detailed parameters for each step.
+> * `config/machine_learning.yaml`: configuration file with parameters used for feature selection and classification step.
 > * `data/example/batch_info.txt`: table of batch information.
-> * `data/example/compare_groups.yaml`: configuration file for definition of positive and negative samples.
+> * `data/example/compare_groups.yaml`: table for definition of positive and negative samples.
 > * `data/example/sample_classes.txt`: table of sample labels.
-> * `output/example/`: input matrix of read counts.
-
----
-
+> * `output/example/`: output folder.
 
 
 ### 1.Index preparing
 
 exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
 
----
 
 ### 2.Small RNA-seq mapping
+
 #### 2.1 Update sequential mapping order
 
 The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
-
 ```yaml
 rna_types: [rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
   snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
 
-You can change the mapping order by add a `rna_types` variable in `config/${dataset}.yaml`. For example, add spike-in sequences as the first RNA type:
-
+You can change the mapping order by add a `rna_types` variable in `config/example.yaml`. For example, add spike-in sequences as the first RNA type:
 ```yaml
 rna_types: [spikein, rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
   snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
@@ -155,13 +150,11 @@ exseek.py update_sequential_mapping -d example
 #### 2.2 Add new reference sequence
 
 If a new RNA type is added, you should also add a sequence file in FASTA format: `${genome_dir}/fasta/${rna_type}.fa`. Then build a FASTA index \(`${genome_dir}/fasta/${rna_type}.fa.fai`\):
-
 ```bash
 samtools faidx ${genome_dir}/fasta/${rna_type}.fa
 ```
 
 Then build a bowtie2 index \(`${genome_dir}/index/bowtie2/${rna_type}`\):
-
 ```bash
 bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${rna_type}
 ```
@@ -172,7 +165,7 @@ bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${r
 exseek.py quality_control -d example
 ```
 > **Note:**
-> * The detailed results for each sample are in `example_data/output/example/fastqc`. 
+> * The detailed results for each sample are in folder `example_data/output/example/fastqc`. 
 > * You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
 
 #### 2.4 Remove adapter
@@ -200,7 +193,7 @@ exseek.py mapping -d example
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
 > * You can check the read length distribution for each type of RNA in folder `example_data/output/example/stats/mapped_read_length/`.
-> * You can also check the summary of read counts mapped to all RNA types for all smaples with the file `example_data/output/example/summary/read_counts.txt`.
+> * You can also check the summary of read counts mapped to all RNA types for all samples with the file `example_data/output/example/summary/read_counts.txt`.
 
 #### 2.7 Generate BigWig files
 
@@ -208,11 +201,10 @@ exseek.py mapping -d example
 exseek.py bigwig -d example
 ```
 
----
 
 ### 3. Peak (domains) Calling
-exSEEK provides peak calling methods for identifying conserved fragments (domains) of long exRNAs. These domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 
+exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (domains) of long exRNAs, such as mRNA and lncRNA. These called domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 ```bash
 exseek.py call_domains -d example
 ```
@@ -220,19 +212,18 @@ exseek.py call_domains -d example
 **Notes:**
 * Domain calling parameters in `example_data/config/example.yaml`:
 > * `call_domain_pvalue: "05"`: adjusted p-value threshold for defining peaks.
-> * `bin_size: 20`: size of bins for calculating read coverage
+> * `bin_size: 20`: size of bins for calculating read coverage.
 > * `cov_threshold: 0.05`: The fraction of samples that have the called peak. Peaks with cov_threshold above 0.05 are dedined as domains.
+
 * Output files:
 > * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
 > * `example_data/output/example/domains_localmax/domains.bed` contains .
 
----
 
 ### 4. Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above commandlines for long RNA-seq by setting `small_rna` to `False` in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, beacuse there are no significantly conserved domains detected in long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above commandlines for long RNA-seq by setting `small_rna` to `False` in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, beacuse there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
 
----
 
 ### 5. Counting expression matrix
 
@@ -251,7 +242,6 @@ exseek.py combine_domains -d example
 > * `transcript_mirna`:
 > * `domains_long`:
 
----
 
 ### 6. Normalization and batch removal
 
@@ -262,7 +252,7 @@ normalization_method: ["TMM", "RLE", "CPM", "CPM_top", "null"]
 batch_removal_method: ["ComBat", "limma", "RUV", "null"]
 ```
 
-You can get normalized expression matrix generated by any combination of normalization and batch removal methods by executing:
+You can get normalized expression matrix generated by any combinations of normalization and batch removal methods by executing:
 
 ```bash
 exseek normalization -d example
