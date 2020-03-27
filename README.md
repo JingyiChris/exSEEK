@@ -286,7 +286,8 @@ exseek normalization -d example
 > * The name pattern of output files in folder `example_data/output/example/matrix_processing` is:   `Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`.
 
 You can choose the best combination based on `UCA` score and `mKNN` score, which is summarized in folder `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
-For a perfectly corrected expression matrix, both **UCA and mKNN scores approach 1**.
+
+For a perfectly corrected expression matrix, both ***UCA*** and ***mKNN*** scores approach **1**.
 
 The `UCA` score files look like this:
 | preprocess_method | uca_score |
@@ -353,7 +354,7 @@ The `feature_stability.txt` file looks like:
 | LogRegL2 | 5 | DiffExp_TTest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.450 |
 | RBFSVM | 5 | DiffExp_TTest | any | Normal-stage_A | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.473 |
 
-You can choose the most proper combination and its identified features (biomarker panel) base on **ROC_AUC** and **feature stability** score summarized in the above three files. 
+You can choose the most proper combination and its identified features (biomarker panel) base on ***ROC_AUC*** and ***feature stability*** score summarized in the above three files. 
 
 
 ## Copyright and License Information
