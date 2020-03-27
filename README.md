@@ -271,15 +271,15 @@ The `UCA` score files look like this:
 | :--- | :--- |
 | filter.null.Norm_CPM_top.Batch_limma_1 | 0.578 |
 | filter.null.Norm_CPM.Batch_limma_1 | 0.563 |
-| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.564 |
-| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.563 | 
+| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.563 |
+| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.564 | 
 
 And the `mKNN` score files look like this:
 | preprocess_method | knn_score |
 | :--- | :--- |
 | filter.null.Norm_CPM_top.Batch_limma_1 | 0.940 |
 | filter.null.Norm_CPM.Batch_limma_1 | 0.936 |
-| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.930 |
+| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.936 |
 | filter.null.Norm_CPM_top.Batch_RUV_1 | 0.927 | 
 
 After deciding the most proper combination of normalization and batch removal methods, you can specify the exact normalization method by setting the value of `normalization_method` and the batch removal method by setting the value of `batch_removal_method` in `config/sample.yaml`.
