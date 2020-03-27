@@ -12,10 +12,10 @@ The exSEEK framework consists of:
 
 + Main function:
    
-   + Peak calling for fragments of long RNAs. [`exseek.py call_domains`]
+   + Peak calling for recurring fragments of long RNAs. [`exseek.py call_domains`]
    + Normalization and batch removal. [`exseek.py normalization`]
    + Feature selection and classification. [`exseek.py feature_selection`]
-   + Biomarker evaluation. [`exseek.py evaluate_features`]
+   + Biomarker evaluation. [`exseek.py feature_selection`]
 
 Table of Contents:
 
