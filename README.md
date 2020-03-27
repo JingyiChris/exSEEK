@@ -19,17 +19,17 @@ The exSEEK framework consists of:
 
 Table of Contents:
 
-* [Installation](#Installation)
-* [Usage](#Usage)
-  * [Index preparing](#Index-preparing)
-  * [2. Small RNA-seq mapping](#2.-Small-RNA-seq-mapping)
-  * [3. Peak calling](#3.-Peak-calling)
-  * [4. Long RNA-seq mapping](#4.-Long-RNA-seq-mapping)
-  * [5. Counting expression matrix](#5.-Counting-expression-matrix)
-  * [6. Normalization and batch removal](#6.-Normalization-and-batch-removal)
-  * [7. Feature selection and biomarker evaluation](#7.-Feature-selection-and-biomarker-evaluation)
-* [Copyright and License Information](#Copyright-and-license-information)
-* [Citation](#Citation)
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Index preparing](#index-preparing)
+  * [Small RNA-seq mapping](#small-RNA-seq-mapping)
+  * [Peak calling](#peak-calling)
+  * [Long RNA-seq mapping](#long-RNA-seq-mapping)
+  * [Counting expression matrix](#counting-expression-matrix)
+  * [Normalization and batch removal](#normalization-and-batch-removal)
+  * [Feature selection and biomarker evaluation](#feature-selection-and-biomarker-evaluation)
+* [Copyright and License Information](#copyright-and-license-information)
+* [Citation](#citation)
 
 ## Installation
 
