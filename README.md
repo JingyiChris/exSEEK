@@ -47,6 +47,8 @@ All required software and packages are already installed in docker, so there are
 ```bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py -h
 ```
+The -v flag mounts the current working directory `$PWD` into the `/workspace` in docker image, so you can eaisly check the ouput files in `/workspace` directory after exiting docker.
+
 A helper message is shown:
 
 ```bash
