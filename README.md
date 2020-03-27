@@ -222,8 +222,8 @@ exseek.py call_domains -d example
 > * `cov_threshold: 0.05`: The fraction of samples that have the called peak. Peaks with cov_threshold above 0.05 are dedined as domains.
 
 * Output files:
-> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
-> * `example_data/output/example/domains_localmax/domains.bed` contains .
+> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains all recurring peaks (domains).
+> * `example_data/output/example/domains_localmax/domains.bed` contains after-merged recurring peaks (domains).
 
 The `recurrence.bed` file looks like:
 | Transcript ID | transStart | transEnd | X | frequency | strand |
@@ -236,11 +236,11 @@ The `recurrence.bed` file looks like:
 The `domains.bed` file looks like:
 | Transcript ID | transStart | transEnd | | Peak_ID | |strand |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| ENST00000365118.2 | 0 | 30 | X | 8 | + |
-| ENST00000365223.1 | 0 | 61 | X | 12 | + |
-| ENST00000365436.1 | 69 | 92 | X | 2 | + |
-| ENST00000366365.2 | 236 | 261 | X | 1 | + |
-| ENST00000366365.2 | 236 | 261 | X | 1 | + |
+|ENST00000006015.3   1506    1523    peak_605    14.2353 +
+ENST00000006015.3   1971    1986    peak_606    10  +
+ENST00000008938.4   20  35  peak_607    7   +
+ENST00000025301.3   8580    8597    peak_608    37.2353 +
+ENST00000192788.5   2649    2665    peak_609    72.5625 +
 
 ### Long RNA-seq mapping
 
