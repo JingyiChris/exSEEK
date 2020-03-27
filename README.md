@@ -307,7 +307,7 @@ And the `mKNN` score files look like this:
 After deciding the most proper combination of normalization and batch removal methods, you can specify the exact normalization method by setting the value of `normalization_method` and the batch removal method by setting the value of `batch_removal_method` in `config/sample.yaml`.
 
 
-### 7. Feature selection and biomarker evaluation
+### Feature selection and biomarker evaluation
 
 This step identifies and evaluates exRNA biomarker panels selected by various combinations of feature selection methods and machine learning classifiers. 
 
