@@ -244,7 +244,7 @@ The `domains.bed` file looks like:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting `small_rna` to `False` in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
 
 
 ### Counting expression matrix
@@ -265,7 +265,7 @@ exseek.py combine_domains -d example
 > * `domains_long`:
 
 
-### 6. Normalization and batch removal
+### Normalization and batch removal
 
 exSEEK supports 5 kinds of normalization methods and 4 kinds of batch removal methods:
 
@@ -286,7 +286,7 @@ exseek normalization -d example
 > * The name pattern of output files in folder `example_data/output/example/matrix_processing` is:   `Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`.
 
 You can choose the best combination based on `UCA` score and `mKNN` score, which is summarized in folder `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
-For a perfectly corrected expression matrix, both UCA and mKNN scores approach 1.
+For a perfectly corrected expression matrix, both **UCA and mKNN scores approach 1**.
 
 The `UCA` score files look like this:
 | preprocess_method | uca_score |
@@ -353,7 +353,7 @@ The `feature_stability.txt` file looks like:
 | LogRegL2 | 5 | DiffExp_TTest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.450 |
 | RBFSVM | 5 | DiffExp_TTest | any | Normal-stage_A | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.473 |
 
-You can choose the most proper combination and its identified features (biomarker panel) base on ROC_AUC and feature stability score summarized in the above three files. 
+You can choose the most proper combination and its identified features (biomarker panel) base on **ROC_AUC** and **feature stability** score summarized in the above three files. 
 
 
 ## Copyright and License Information
