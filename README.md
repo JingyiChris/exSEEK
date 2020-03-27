@@ -45,6 +45,14 @@ docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py -h
 ```
 The -v flag mounts the current working directory `$PWD` into the `/workspace` in docker image, so you can easily check the output files in `/workspace` directory after exiting docker.
 
+You can create a bash script named `exseek` and set the script executable: 
+```bash
+#! /bin/bash
+docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
+```
+After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
+
+
 A helper message is shown:
 ```bash
 usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
@@ -81,15 +89,10 @@ exseek ${step_name} -d ${dataset}
 > * `${step_name}` is one of the step listed in 'positional arguments'.
 > * `${dataset}` is the name of your dataset that should match the prefix of your configuration file described in the following section.
 
-You can create a bash script named `exseek` and set the script executable: 
-```bash
-#! /bin/bash
-docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
-```
-After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
 
 
 ## Usage
+
 You can use the provided `example_data` to run exSEEK:
 ```bash
 cp /apps/example_data /workspace
@@ -190,6 +193,7 @@ exseek.py quality_control_clean -d example
 ```bash
 exseek.py mapping -d example
 ```
+
 > **Note:**
 > * Make sure that the parameter `small_rna` is `True` in `example_data/config/example.yaml`.
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
@@ -221,13 +225,28 @@ exseek.py call_domains -d example
 > * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains .
 > * `example_data/output/example/domains_localmax/domains.bed` contains .
 
+The `recurrence.bed` file looks like:
+| Transcript ID | start | end | X| frequency | strand |
+| :--- | :--- | :--- | :--- | :--- |
+| ENST00000365118.2 | 0 | 30 | X | 8 | + |
+| ENST00000365223.1 | 0 | 61 | X | 12 | + |
+| ENST00000365436.1 | 69 | 92 | X | 2 | + |
+| ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
-### 4. Long RNA-seq mapping
+The `domains.bed` file looks like:
+| Transcript ID | start | end | | frequency | strand |
+| :--- | :--- | :--- | :--- | :--- |
+| ENST00000365118.2 | 0 | 30 | X | 8 | + |
+| ENST00000365223.1 | 0 | 61 | X | 12 | + |
+| ENST00000365436.1 | 69 | 92 | X | 2 | + |
+| ENST00000366365.2 | 236 | 261 | X | 1 | + |
+
+### Long RNA-seq mapping
 
 The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting `small_rna` to `False` in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
 
 
-### 5. Counting expression matrix
+### Counting expression matrix
 
 ```bash
 exseek.py count_matrix -d example
