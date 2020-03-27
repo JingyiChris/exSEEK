@@ -277,16 +277,26 @@ After deciding the most proper combination of normalization and batch removal me
 
 ---
 
-### Feature selection
+### Feature selection and biomarker evaluation
+This step identifies and evaluates exRNA biomarker panels generated from various feature selection methods and machine learning classifiers. 
 
-Run:
+exSEEK supported feature selection methods include:
 
 ```bash
-exseek feature_selection -d ${dataset}
+[DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
 ```
 
-This will evaluate all combinations of feature selection methods and classifiers by cross-validation.
+exSEEK supported classifiers include:
 
+```bash
+[LogRegL2, RandomForest, RBFSVM, DecisionTree, MLP]
+```
+
+You can evaluate all combinations of feature selection methods and classifiers by cross-validation:
+
+```bash
+exseek feature_selection -d example
+```
 Three summary files will be generated:
 
 * `output/${dataset}/summary/cross_validation/metrics.test.txt`
