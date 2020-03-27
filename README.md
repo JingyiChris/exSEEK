@@ -27,8 +27,7 @@ Table of Contents:
   * [4. Long RNA-seq mapping](#4._Long_RNA-seq_mapping)
   * [5. Counting expression matrix](#5._Counting expression matrix)
   * [6. Normalization and batch removal](#6._Normalization_and_batch_removal)
-  * [7. Feature selection](#7._Feature_selection)
-  * [8. Evaluation for biomarkers](#8._Evaluation_for_biomarkers)
+  * [7. Feature selection and biomarker evaluation](#7._Feature_selection_and biomarker_evaluation)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
 
@@ -277,7 +276,7 @@ After deciding the most proper combination of normalization and batch removal me
 
 ---
 
-### Feature selection and biomarker evaluation
+### 7. Feature selection and biomarker evaluation
 
 This step identifies and evaluates exRNA biomarker panels selected by various combinations of feature selection methods and machine learning classifiers. 
 
