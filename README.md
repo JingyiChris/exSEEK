@@ -226,19 +226,20 @@ exseek.py call_domains -d example
 > * `example_data/output/example/domains_localmax/domains.bed` contains .
 
 The `recurrence.bed` file looks like:
-| Transcript ID | start | end | X| frequency | strand |
-| :--- | :--- | :--- | :--- | :--- |
+| Transcript ID | transStart | transEnd | X | frequency | strand |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | ENST00000365118.2 | 0 | 30 | X | 8 | + |
 | ENST00000365223.1 | 0 | 61 | X | 12 | + |
 | ENST00000365436.1 | 69 | 92 | X | 2 | + |
 | ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
 The `domains.bed` file looks like:
-| Transcript ID | start | end | | frequency | strand |
-| :--- | :--- | :--- | :--- | :--- |
+| Transcript ID | transStart | transEnd | | Peak_ID | |strand |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | ENST00000365118.2 | 0 | 30 | X | 8 | + |
 | ENST00000365223.1 | 0 | 61 | X | 12 | + |
 | ENST00000365436.1 | 69 | 92 | X | 2 | + |
+| ENST00000366365.2 | 236 | 261 | X | 1 | + |
 | ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
 ### Long RNA-seq mapping
