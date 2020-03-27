@@ -16,7 +16,7 @@ The exSEEK framework consists of:
    + Normalization and batch removal. [`exseek.py normalization`]
    + Feature selection and classification. [`exseek.py feature_selection`]
    + Biomarker evaluation. [`exseek.py evaluate_features`]
----
+-
 
 Table of Contents:
 
@@ -26,14 +26,12 @@ Table of Contents:
   * [2. Small RNA-seq mapping](#2._Small_RNA-seq_mapping)
   * [3. Peak calling](#3._Peak_calling)
   * [4. Long RNA-seq mapping](#4._Long_RNA-seq_mapping)
-  * [5. Counting expression matrix](#5._Counting expression matrix)
+  * [5. Counting expression matrix](#5._Counting_expression_matrix)
   * [6. Normalization and batch removal](#6._Normalization_and_batch_removal)
-  * [7. Feature selection and biomarker evaluation](#7._Feature_selection_and biomarker_evaluation)
+  * [7. Feature selection and biomarker evaluation](#7._Feature_selection_and_biomarker_evaluation)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
-
 ---
-
 
 ## Installation
 
