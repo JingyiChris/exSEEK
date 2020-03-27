@@ -267,18 +267,30 @@ You can choose the best combination based on `UCA` score and `mKNN` score, which
 
 The `UCA` score files look like this:
 
+| preprocess_method | uca_score |
+| :--- | :--- |
+| filter.null.Norm_CPM_top.Batch_limma_1 | 0.5789473684210527 |
+| filter.null.Norm_CPM.Batch_limma_1 | 0.5639097744360902 |
+| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.5639097744360902 |
+| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.5639097744360902 | 
+
 And the `mKNN` score files look like this:
+
+| preprocess_method | knn_score |
+| :--- | :--- |
+| filter.null.Norm_CPM_top.Batch_limma_1 | 0.5789473684210527 |
+| filter.null.Norm_CPM.Batch_limma_1 | 0.5639097744360902 |
+| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.5639097744360902 |
+| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.5639097744360902 | 
 
 After deciding the most proper combination of normalization and batch removal methods, you can specify the exact normalization method by setting the value of `normalization_method` and the batch removal method by setting the value of `batch_removal_method` in `config/sample.yaml`.
 
----
 
 ### 7. Feature selection and biomarker evaluation
 
 This step identifies and evaluates exRNA biomarker panels selected by various combinations of feature selection methods and machine learning classifiers. 
 
 exSEEK supported feature selection methods:
-
 ```bash
 [DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, 
 MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, 
@@ -286,13 +298,11 @@ RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
 ```
 
 exSEEK supported classifiers:
-
 ```bash
 [LogRegL2, RandomForest, RBFSVM, DecisionTree, MLP]
 ```
 
 You can evaluate all combinations of feature selection methods and classifiers by cross-validation:
-
 ```bash
 exseek feature_selection -d example
 ```
@@ -312,7 +322,13 @@ Three summary files will be generated in this step:
 
 The `metrics.*.txt` file looks like:
 
+| classifier | n_features | selector | fold_change_direction | compare_group | filter_method | imputation | normalization | batch_removal | count_method | preprocess_method | split | accuracy | average_precision | f1_score | precision | recall | roc_auc |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| LogRegL2 | 10 | MaxFeatures_RandomForest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 48 | 0.928 | 0.916 | 0.8 | 1.0 | 0.666 | 0.969 |
+| LogRegL2 | 5 | DiffExp_TTest| any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_10 | 0 | 0.928 | 0.743 | 0.8 | 1.0 | 0.666 | 0.696 |
+
 The `feature_stability.txt` file looks like:
+
 
 You can choose the most proper combination and its selected features (biomarker panel) base on ROC_AUC and feature stability score summarized in above three files.
 
