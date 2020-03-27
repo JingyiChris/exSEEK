@@ -278,15 +278,18 @@ After deciding the most proper combination of normalization and batch removal me
 ---
 
 ### Feature selection and biomarker evaluation
-This step identifies and evaluates exRNA biomarker panels generated from various feature selection methods and machine learning classifiers. 
 
-exSEEK supported feature selection methods include:
+This step identifies and evaluates exRNA biomarker panels selected by various combinations of feature selection methods and machine learning classifiers. 
+
+exSEEK supported feature selection methods:
 
 ```bash
-[DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
+[DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, 
+MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, 
+RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
 ```
 
-exSEEK supported classifiers include:
+exSEEK supported classifiers:
 
 ```bash
 [LogRegL2, RandomForest, RBFSVM, DecisionTree, MLP]
@@ -297,21 +300,27 @@ You can evaluate all combinations of feature selection methods and classifiers b
 ```bash
 exseek feature_selection -d example
 ```
-Three summary files will be generated:
-
-* `output/${dataset}/summary/cross_validation/metrics.test.txt`
-* `output/${dataset}/summary/cross_validation/metrics.train.txt`
-* `output/${dataset}/summary/cross_validation/feature_stability.txt`
-
-Cross-validation results and trained models for individual combinations are in this directory:
-
-`output/${dataset}/feature_selection/filter.${imputation_method}.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`
-
-Selected list of features are in `features.txt`.
 
 > **Note:**
-> More information about output files can be found on [File format](docs/file_format.md) page. Detailed parameters of feature selection and classifiers can be found in [config/machine_learning.yaml](config/machine_learning.yaml).
+> * The detailed parameters of feature selection and machine learning can be found in file:
+`config/machine_learning.yaml`. 
+> * The cross-validation results and trained models for individual combinations are in this directory:
+`output/example/feature_selection/.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`.
+> * Selected features (biomarker panels) for each combination can be found in `features.txt`.
 
+Three summary files will be generated in this step:
+
+* `output/example/summary/cross_validation/metrics.test.txt`
+* `output/example/summary/cross_validation/metrics.train.txt`
+* `output/sxample/summary/cross_validation/feature_stability.txt`
+
+The `metrics.*.txt` file looks like:
+
+The `feature_stability.txt` file looks like:
+
+You can choose the most proper combination and its selected features (biomarker panel) base on ROC_AUC and feature stability score summarized in above three files.
+
+---
 
 ### Advanced Usage
 
