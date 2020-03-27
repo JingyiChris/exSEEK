@@ -17,8 +17,6 @@ The exSEEK framework consists of:
    + Feature selection and classification. [`exseek.py feature_selection`]
    + Biomarker evaluation. [`exseek.py evaluate_features`]
 
----
-
 Table of Contents:
 
 * [Installation](#istallation)
@@ -33,24 +31,20 @@ Table of Contents:
 * [Copyright and License Information](#Copyright-and-license-information)
 * [Citation](#Citation)
 
----
-
 ## Installation
 
 For easy installation, you can use the [exSEEK image](https://hub.docker.com/r/ltbyshi/exseek) of [docker](https://www.docker.com) with all dependencies installed:
-
 ```bash
 docker pull ltbyshi/exseek
 ```
-All required software and packages are already installed in docker, so there are no more requirements. To test the installation and get information about the command-line interface of exSEEK, you can execute:
 
+All required software and packages are already installed in docker, so there are no more requirements. To test the installation and get information about the command-line interface of exSEEK, you can execute:
 ```bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py -h
 ```
 The -v flag mounts the current working directory `$PWD` into the `/workspace` in docker image, so you can eaisly check the ouput files in `/workspace` directory after exiting docker.
 
 A helper message is shown:
-
 ```bash
 usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
                  [--cluster-config CLUSTER_CONFIG]
@@ -77,9 +71,15 @@ optional arguments:
   --singularity                                 use singularity
 ```
 
-The exSEEK directory was cloned to /apps/exseek in the docker.
-You can create a bash script named `exseek` and set the script executable:
+The basic usage of exSEEK is:
+```bash
+exseek ${step_name} -d ${dataset}
+```
 
+> **Note:**
+> * `${step_name}` is one of the step in 'positional arguments'.
+> * `${dataset}` is the name of your dataset that should match the prefix of your configuration file described in the following section.
+> * You can create a bash script named `exseek` and set the script executable:
 ```bash
 #! /bin/bash
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
@@ -87,6 +87,12 @@ docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$
 After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
 
 ---
+
+## Usage
+You can use the provided `example_data` to run exSEEK:
+```bash
+cp /apps/example_data /workspace
+```
 
 ### Input files
 
@@ -118,9 +124,7 @@ example_data/
 
 ---
 
-## Usage
 
-You can use the provided `example_data` to run exSEEK.
 
 ### 1.Index preparing
 
