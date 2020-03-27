@@ -21,7 +21,7 @@ Table of Contents:
 
 * [Installation](#Installation)
 * [Usage](#Usage)
-  * [1. Index preparing](#1.-Index-preparing)
+  * [Index preparing](#Index-preparing)
   * [2. Small RNA-seq mapping](#2.-Small-RNA-seq-mapping)
   * [3. Peak calling](#3.-Peak-calling)
   * [4. Long RNA-seq mapping](#4.-Long-RNA-seq-mapping)
@@ -332,7 +332,7 @@ The `feature_stability.txt` file looks like:
 | LogRegL2 | 5 | DiffExp_TTest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.450 |
 | RBFSVM | 5 | DiffExp_TTest | any | Normal-stage_A | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.473 |
 
-You can choose the most proper combination and its selected features (biomarker panel) base on ROC_AUC and feature stability score summarized in the above three files. 
+You can choose the most proper combination and its identified features (biomarker panel) base on ROC_AUC and feature stability score summarized in the above three files. 
 
 
 ## Copyright and License Information
