@@ -22,14 +22,15 @@ Table of Contents:
 * [Installation](#installation)
 * [Usage](#usage)
   * [Index preparing](#index-preparing)
-  * [Small RNA-seq mapping](#small-RNA-seq-mapping)
-  * [Peak calling](#peak-calling)
-  * [Long RNA-seq mapping](#long-RNA-seq-mapping)
+  * [Small RNA-seq mapping](#small-rna-seq-mapping)
+  * [Peak calling](#peak-(domain)-calling)
+  * [Long RNA-seq mapping](#long-rna-seq-mapping)
   * [Counting expression matrix](#counting-expression-matrix)
   * [Normalization and batch removal](#normalization-and-batch-removal)
   * [Feature selection and biomarker evaluation](#feature-selection-and-biomarker-evaluation)
 * [Copyright and License Information](#copyright-and-license-information)
 * [Citation](#citation)
+
 
 ## Installation
 
@@ -77,7 +78,7 @@ exseek ${step_name} -d ${dataset}
 ```
 
 > **Note:**
-> * `${step_name}` is one of the step in 'positional arguments'.
+> * `${step_name}` is one of the step listed in 'positional arguments'.
 > * `${dataset}` is the name of your dataset that should match the prefix of your configuration file described in the following section.
 
 You can create a bash script named `exseek` and set the script executable: 
@@ -129,9 +130,9 @@ example_data/
 exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
 
 
-### 2.Small RNA-seq mapping
+### Small RNA-seq mapping
 
-#### 2.1 Update sequential mapping order
+#### Update sequential mapping order
 
 The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
 ```yaml
@@ -148,7 +149,7 @@ rna_types: [spikein, rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA,
 exseek.py update_sequential_mapping -d example
 ```
 
-#### 2.2 Add new reference sequence
+#### Add new reference sequence
 
 If a new RNA type is added, you should also add a sequence file in FASTA format: `${genome_dir}/fasta/${rna_type}.fa`. Then build a FASTA index \(`${genome_dir}/fasta/${rna_type}.fa.fai`\):
 ```bash
@@ -160,7 +161,7 @@ Then build a bowtie2 index \(`${genome_dir}/index/bowtie2/${rna_type}`\):
 bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${rna_type}
 ```
 
-#### 2.3 Quality control \(before adaptor removal\)
+#### Quality control \(before adaptor removal\)
 
 ```bash
 exseek.py quality_control -d example
@@ -169,7 +170,7 @@ exseek.py quality_control -d example
 > * The detailed results for each sample are in folder `example_data/output/example/fastqc`. 
 > * You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
 
-#### 2.4 Remove adapter
+#### Remove adapter
 
 ```bash
 exseek.py cutadapt -d example
@@ -178,13 +179,13 @@ exseek.py cutadapt -d example
 > * Make sure that you have added your adaptor information in `example_data/config/example.yaml` file. 
 > * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
 
-#### 2.5 Quality control \(after adapter removal\)
+#### Quality control \(after adapter removal\)
 
 ```bash
 exseek.py quality_control_clean -d example
 ```
 
-#### 2.6 Mapping
+#### Mapping
 
 ```bash
 exseek.py mapping -d example
@@ -196,14 +197,14 @@ exseek.py mapping -d example
 > * You can check the read length distribution for each type of RNA in folder `example_data/output/example/stats/mapped_read_length/`.
 > * You can also check the summary of read counts mapped to all RNA types for all samples with the file `example_data/output/example/summary/read_counts.txt`.
 
-#### 2.7 Generate BigWig files
+#### Generate BigWig files
 
 ```bash
 exseek.py bigwig -d example
 ```
 
 
-### 3. Peak (domains) Calling
+### Peak (domains) Calling
 
 exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (domains) of long exRNAs, such as mRNA and lncRNA. These called domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 ```bash
