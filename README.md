@@ -237,7 +237,7 @@ The `recurrence.bed` file looks like:
 | ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
 The `domains.bed` file looks like:
-| Transcript ID | transStart | transEnd | After_merged Peak_ID | Ave_frequency | strand |
+| Transcript ID | transStart | transEnd | After_merged Peak_ID | Weighted_ave_frequency | strand |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | ENST00000006015.3 | 1506 | 1523 | peak_1 | 14.2353 | + |
 |ENST00000006015.3 | 1971 |1986 |peak_2 | 10 | + |
@@ -249,7 +249,7 @@ The `domains.bed` file looks like:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
 
 ---
 
