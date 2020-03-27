@@ -264,24 +264,23 @@ exseek normalization -d example
 > * The name pattern of output files in folder `example_data/output/example/matrix_processing` is:   `Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`.
 
 You can choose the best combination based on `UCA` score and `mKNN` score, which is summarized in folder `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
+For a perfectly corrected expression matrix, both UCA and mKNN scores approach 1.
 
 The `UCA` score files look like this:
-
 | preprocess_method | uca_score |
 | :--- | :--- |
-| filter.null.Norm_CPM_top.Batch_limma_1 | 0.5789473684210527 |
-| filter.null.Norm_CPM.Batch_limma_1 | 0.5639097744360902 |
-| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.5639097744360902 |
-| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.5639097744360902 | 
+| filter.null.Norm_CPM_top.Batch_limma_1 | 0.578 |
+| filter.null.Norm_CPM.Batch_limma_1 | 0.563 |
+| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.564 |
+| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.563 | 
 
 And the `mKNN` score files look like this:
-
 | preprocess_method | knn_score |
 | :--- | :--- |
-| filter.null.Norm_CPM_top.Batch_limma_1 | 0.5789473684210527 |
-| filter.null.Norm_CPM.Batch_limma_1 | 0.5639097744360902 |
-| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.5639097744360902 |
-| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.5639097744360902 | 
+| filter.null.Norm_CPM_top.Batch_limma_1 | 0.940 |
+| filter.null.Norm_CPM.Batch_limma_1 | 0.936 |
+| filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.930 |
+| filter.null.Norm_CPM_top.Batch_RUV_1 | 0.927 | 
 
 After deciding the most proper combination of normalization and batch removal methods, you can specify the exact normalization method by setting the value of `normalization_method` and the batch removal method by setting the value of `batch_removal_method` in `config/sample.yaml`.
 
@@ -321,22 +320,19 @@ Three summary files will be generated in this step:
 * `output/sxample/summary/cross_validation/feature_stability.txt`
 
 The `metrics.*.txt` file looks like:
-
 | classifier | n_features | selector | fold_change_direction | compare_group | filter_method | imputation | normalization | batch_removal | count_method | preprocess_method | split | accuracy | average_precision | f1_score | precision | recall | roc_auc |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| LogRegL2 | 10 | MaxFeatures_RandomForest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 48 | 0.928 | 0.916 | 0.8 | 1.0 | 0.666 | 0.969 |
-| LogRegL2 | 5 | DiffExp_TTest| any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_10 | 0 | 0.928 | 0.743 | 0.8 | 1.0 | 0.666 | 0.696 |
+| LogRegL2 | 10 | MaxFeatures_RandomForest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 48 | 0.928 | 0.916 | 0.800 | 1.000 | 0.666 | 0.969 |
+| LogRegL2 | 5 | DiffExp_TTest| any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_10 | 0 | 0.928 | 0.743 | 0.800 | 1.000 | 0.666 | 0.696 |
 
 The `feature_stability.txt` file looks like:
+| classifier | n_features | selector | fold_change_direction | compare_group | filter_method | imputation | normalization | batch_removal | count_method | preprocess_method | feature_stability
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| LogRegL2 | 5 | DiffExp_TTest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.450 |
+| RBFSVM | 5 | DiffExp_TTest | any | Normal-stage_A | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.473 |
 
+You can choose the most proper combination and its selected features (biomarker panel) base on ROC_AUC and feature stability score summarized in above three files. 
 
-You can choose the most proper combination and its selected features (biomarker panel) base on ROC_AUC and feature stability score summarized in above three files.
-
----
-
-### Advanced Usage
-
-* [Click here](docs/README.md) to see details
 
 ## Copyright and License Information
 
