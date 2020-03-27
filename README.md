@@ -19,7 +19,7 @@ The exSEEK framework consists of:
 
 Table of Contents:
 
-* [Installation](#istallation)
+* [Installation](#Installation)
 * [Usage](#Usage)
   * [Index preparing](#Index_preparing)
   * [2. Small RNA-seq mapping](#2._Small_RNA-seq_mapping)
@@ -86,6 +86,7 @@ You can create a bash script named `exseek` and set the script executable:
 docker run --rm -it -v $PWD:/workspace -w /workspace ltbyshi/exseek exseek.py "$@"
 ```
 After adding the file to one of the directories in the `$PATH` variable, you can simply run: `exseek`.
+
 
 ## Usage
 You can use the provided `example_data` to run exSEEK:
