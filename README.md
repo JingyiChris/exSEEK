@@ -23,7 +23,7 @@ Table of Contents:
 * [Usage](#usage)
   * [Index preparing](#index-preparing)
   * [Small RNA-seq mapping](#small-rna-seq-mapping)
-  * [Peak calling](#peak-(domain)-calling)
+  * [Peak calling](#peak-calling)
   * [Long RNA-seq mapping](#long-rna-seq-mapping)
   * [Counting expression matrix](#counting-expression-matrix)
   * [Normalization and batch removal](#normalization-and-batch-removal)
@@ -211,7 +211,7 @@ exseek.py bigwig -d example
 
 ---
 
-### Peak (domain) Calling
+### Peak calling
 
 exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (domains) of long exRNAs, such as mRNA and lncRNA. These called domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 ```bash
