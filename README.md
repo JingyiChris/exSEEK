@@ -34,7 +34,7 @@ Table of Contents:
 
 ## Installation
 
-For easy installation, you can use the [exSEEK image](https://hub.docker.com/r/ltbyshi/exseek) of [docker](https://www.docker.com) with all dependencies installed:
+For easy installation, you can use the [exSEEK image](https://hub.docker.com/r/ltbyshi/exseek) of [docker](https://docs.docker.com/) with all dependencies installed:
 ```bash
 docker pull ltbyshi/exseek
 ```
@@ -131,7 +131,12 @@ example_data/
 
 ### Index preparing
 
-exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index you needed:
+exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can use these `.fa` and `.gtf` files to generate the index:
+
+Short RNA index is built with bowtie2:
+
+long RNA index is built with STAR:
+
 
 ---
 
@@ -197,7 +202,7 @@ exseek.py mapping -d example
 ```
 
 > **Note:**
-> * Make sure that the parameter `small_rna` is `True` in `example_data/config/example.yaml`.
+> * Make sure that the parameter ***`small_rna`*** is ***`True`*** in `example_data/config/example.yaml`.
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
 > * You can check the read length distribution for each type of RNA in folder `example_data/output/example/stats/mapped_read_length/`.
@@ -222,14 +227,14 @@ exseek.py call_domains -d example
 * Domain calling parameters in `example_data/config/example.yaml`:
 > * `call_domain_pvalue: "05"`: adjusted p-value threshold for defining peaks.
 > * `bin_size: 20`: size of bins for calculating read coverage.
-> * `cov_threshold: 0.05`: The fraction of samples that have the called peak. Peaks with cov_threshold above 0.05 are dedined as domains.
+> * `cov_threshold: 0.05`: The proportion of samples that have the called peak. Peaks with cov_threshold below 0.05 are filtered out. 
 
 * Output files:
-> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains all recurring peaks (domains).
+> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains all before_merged recurring peaks (domains).
 > * `example_data/output/example/domains_localmax/domains.bed` contains after-merged recurring peaks (domains).
 
 The `recurrence.bed` file looks like:
-| Transcript ID | transStart | transEnd | X | frequency | strand |
+| Transcript ID | TransStart | TransEnd | X | Frequency | Strand |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | ENST00000365118.2 | 0 | 30 | X | 8 | + |
 | ENST00000365223.1 | 0 | 61 | X | 12 | + |
@@ -237,7 +242,7 @@ The `recurrence.bed` file looks like:
 | ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
 The `domains.bed` file looks like:
-| Transcript ID | transStart | transEnd | After_merged Peak_ID | Weighted_ave_frequency | strand |
+| Transcript ID | TransStart | TransEnd | After_merged Peak_ID | Weighted_ave_frequency | Strand |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | ENST00000006015.3 | 1506 | 1523 | peak_1 | 14.2353 | + |
 |ENST00000006015.3 | 1971 |1986 |peak_2 | 10 | + |
@@ -249,7 +254,7 @@ The `domains.bed` file looks like:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
 
 ---
 
@@ -292,9 +297,9 @@ exseek normalization -d example
 > * `${batch_index}` is the column number (start from 1) in `config/example/batch_info.txt` to be used to remove batch effects.
 > * The name pattern of output files in folder `example_data/output/example/matrix_processing` is:   `Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`.
 
-You can choose the best combination based on `UCA` score and `mKNN` score, which is summarized in folder `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
+You can choose the best combination based on ***`UCA`*** score and ***`mKNN`*** score, which is summarized in folder `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
 
-For a perfectly corrected expression matrix, both ***UCA*** and ***mKNN*** scores approach **1**.
+For a perfectly corrected expression matrix, both ***UCA*** score and ***mKNN*** score approach **1**.
 
 The `UCA` score files look like this:
 | preprocess_method | uca_score |
