@@ -356,6 +356,8 @@ Three summary files will be generated in this step:
  output/sxample/summary/cross_validation/feature_stability.txt
  ```
 
+You can choose the most proper combination and its identified features (biomarker panel) base on ***ROC_AUC*** and ***feature stability*** score summarized in the above three files.
+
 The `metrics.*.txt` file looks like:
 
 | classifier | n_features | selector | fold_change_direction | compare_group | filter_method | imputation | normalization | batch_removal | count_method | preprocess_method | split | accuracy | average_precision | f1_score | precision | recall | roc_auc |
@@ -369,8 +371,7 @@ The `feature_stability.txt` file looks like:
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | LogRegL2 | 5 | DiffExp_TTest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.450 |
 | RBFSVM | 5 | DiffExp_TTest | any | Normal-stage_A | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.473 |
-
-You can choose the most proper combination and its identified features (biomarker panel) base on ***ROC_AUC*** and ***feature stability*** score summarized in the above three files. 
+ 
 
 
 ## Copyright and License Information
