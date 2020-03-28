@@ -295,7 +295,7 @@ exseek normalization -d example
 > **Notes:**
 > * When the method name is set to "null", the step is skipped.
 > * `${batch_index}` is the column number (start from 1) in `config/example/batch_info.txt` to be used to remove batch effects.
-> * The name pattern of output files in folder `example_data/output/example/matrix_processing` is:   `Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`.
+> * The name pattern of **output** files in folder ***`example_data/output/example/matrix_processing`*** is:   ***`filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`***.
 
 You can choose the best combination based on ***`UCA`*** score and ***`mKNN`*** score, which is summarized in folder `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
 
@@ -346,7 +346,7 @@ exseek feature_selection -d example
 > * The detailed parameters of feature selection and machine learning can be found in file:
 `config/machine_learning.yaml`. 
 > * The cross-validation results and trained models for individual combinations are in this directory:
-`output/example/cross_validation/filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`.
+***`output/example/cross_validation/filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`***.
 > * Selected features (biomarker panels) for each combination can be found in `features.txt` in the above mentioned directory.
 
 Three summary files will be generated in this step:
