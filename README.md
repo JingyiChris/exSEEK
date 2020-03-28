@@ -211,7 +211,7 @@ exseek.py bigwig -d example
 
 ---
 
-### Peak (domains) Calling
+### Peak (domain) Calling
 
 exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (domains) of long exRNAs, such as mRNA and lncRNA. These called domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
 ```bash
@@ -249,7 +249,7 @@ The `domains.bed` file looks like:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets, because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting **`small_rna`** to **`False`** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets because there are no significantly recurring fragments (domains) detected in long RNA-seq datasets. 
 
 ---
 
