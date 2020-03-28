@@ -346,22 +346,25 @@ exseek feature_selection -d example
 > * The detailed parameters of feature selection and machine learning can be found in file:
 `config/machine_learning.yaml`. 
 > * The cross-validation results and trained models for individual combinations are in this directory:
-`output/example/feature_selection/.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`.
-> * Selected features (biomarker panels) for each combination can be found in `features.txt`.
+`output/example/cross_validation/filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`.
+> * Selected features (biomarker panels) for each combination can be found in `features.txt` in the above mentioned directory.
 
 Three summary files will be generated in this step:
-
-* `output/example/summary/cross_validation/metrics.test.txt`
-* `output/example/summary/cross_validation/metrics.train.txt`
-* `output/sxample/summary/cross_validation/feature_stability.txt`
+```bash
+ output/example/summary/cross_validation/metrics.test.txt
+ output/example/summary/cross_validation/metrics.train.txt
+ output/sxample/summary/cross_validation/feature_stability.txt
+ ```
 
 The `metrics.*.txt` file looks like:
+
 | classifier | n_features | selector | fold_change_direction | compare_group | filter_method | imputation | normalization | batch_removal | count_method | preprocess_method | split | accuracy | average_precision | f1_score | precision | recall | roc_auc |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | LogRegL2 | 10 | MaxFeatures_RandomForest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 48 | 0.928 | 0.916 | 0.800 | 1.000 | 0.666 | 0.969 |
 | LogRegL2 | 5 | DiffExp_TTest| any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_10 | 0 | 0.928 | 0.743 | 0.800 | 1.000 | 0.666 | 0.696 |
 
 The `feature_stability.txt` file looks like:
+
 | classifier | n_features | selector | fold_change_direction | compare_group | filter_method | imputation | normalization | batch_removal | count_method | preprocess_method | feature_stability
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | LogRegL2 | 5 | DiffExp_TTest | any | Normal-HCC | filter | null | Norm_RLE | Batch_limma_1 | mirna_and_domains_rna | filter.null.Norm_RLE.Batch_limma_1 | 0.450 |
