@@ -5,7 +5,7 @@ exSEEK is an integrated computational framework to discover and evaluate exRNA b
 The exSEEK framework consists of:
 + Pre_processing:
    
-   + Building index with various types of genomes and annotations. []
+   + Building index with various types of genomes and annotations. [`exseek.py build-index`]
    + Quality control and removing adaptors. [`exseek.py quality_control`] [`exseek.py cutadapt`]
    + Sequential mapping for small/long RNA-seq. [`exseek.py mapping`]
    + Counting expression matrix. [`exseek.py count_matrix`]
