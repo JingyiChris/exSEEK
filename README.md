@@ -133,10 +133,10 @@ exSEEK docker contains a variety of commonly used genomes and annotations. Besid
 
 For mapping small RNA-seq, the index of each transcript type can be built with bowtie2, and the index used for mapping long RNA-seq can be built with STAR. You can get these index by executing:
 ```bash
-exseek.py build_index -d example
+exseek build_index -d example
 ```
 
-You can check the detailed information for each transcript type in folder `example_datat/genome/hg38/transcript_table/`.
+The detailed information for each transcript type is in `example_datat/genome/hg38/transcript_table/` directory.
 The summary for transcript types is listed below:
 | RNA type | Number of transcripts |
 | :--- | :--- |
