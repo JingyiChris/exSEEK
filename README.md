@@ -135,6 +135,7 @@ For mapping small RNA-seq, the index of each transcript type can be built with b
 ```bash
 exseek build_index -d example
 ```
+The output folder is `example_datat/genome/hg38/genome_index/`.
 
 The detailed information for each transcript type is in `example_datat/genome/hg38/transcript_table/` directory.
 The summary for transcript types is listed below:
