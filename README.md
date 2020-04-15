@@ -5,17 +5,17 @@ exSEEK is an integrated computational framework to discover and evaluate exRNA b
 The exSEEK framework consists of:
 + Pre_processing:
    
-   + Building index with various types of genomes and annotations. [`exseek.py build-index`]
-   + Quality control and removing adaptors. [`exseek.py quality_control`] [`exseek.py cutadapt`]
-   + Sequential mapping for small/long RNA-seq. [`exseek.py mapping`]
-   + Counting expression matrix. [`exseek.py count_matrix`]
+   + Building index with various types of genomes and annotations. [`exseek build-index`]
+   + Quality control and removing adaptors. [`exseek quality_control`] [`exseek cutadapt`]
+   + Sequential mapping for small/long RNA-seq. [`exseek mapping`]
+   + Counting expression matrix. [`exseek count_matrix`]
 
 + Main function:
    
-   + Peak calling for recurring fragments of long RNAs. [`exseek.py call_domains`]
-   + Normalization and batch removal. [`exseek.py normalization`]
-   + Feature selection and classification. [`exseek.py feature_selection`]
-   + Biomarker evaluation. [`exseek.py feature_selection`]
+   + Peak calling for recurring fragments of long RNAs. [`exseek call_domains`]
+   + Normalization and batch removal. [`exseek normalization`]
+   + Feature selection and classification. [`exseek feature_selection`]
+   + Biomarker evaluation. [`exseek feature_selection`]
 
 Table of Contents:
 
@@ -58,16 +58,14 @@ A helper message is shown:
 usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
                  [--cluster-config CLUSTER_CONFIG]
                  [--cluster-command CLUSTER_COMMAND] [--singularity]  
-                 {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,
-                 filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,
-                 differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
+                 {build_index,quality_control,cutadapt,quality_control_clean,update_sequential_mapping,
+                 mapping,call_domains,combine_domains,count_matrix,normalization,feature_selection}
 
 exseek main program
 
 positional arguments:
-  {quality_control,quality_control_clean,cutadapt,rename_fastq,fastq_to_fasta,prepare_genome,bigwig,mapping,
-  filter,count_matrix,call_domains,merge_domains,combine_domains,normalization,feature_selection,
-  differential_expression,evaluate_features,igv,update_sequential_mapping,update_singularity_wrappers}
+  {build_index,quality_control,cutadapt,quality_control_clean,update_sequential_mapping,mapping,
+  call_domains,combine_domains,count_matrix,normalization,feature_selection}
 
 optional arguments:
   -h, --help                                    show this help message and exit
