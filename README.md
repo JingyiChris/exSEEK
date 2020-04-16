@@ -129,7 +129,10 @@ example_data/
 
 ### Index preparing
 
-exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks.
+exSEEK docker contains a variety of commonly used genomes and annotations. Besides of RNA types extracted from GENCODE V27, exSEEK can also analyze rRNA from NCBI refSeq 109, miRNA from miRBase, piRNA from piRNABank, circRNA from circBase, lncRNA and TUCP from mitranscriptome, repeats from UCSC Genome Browser (rmsk) and promoter and enhancer from ChromHMM tracks. You can download these `.fa`, `.gtf` and `.bed` files here and build index with these genomes and annotations.
+```bash
+
+```
 
 For mapping small RNA-seq, the index of each transcript type can be built with bowtie2, and the index used for mapping long RNA-seq can be built with STAR. You can get these index by executing:
 ```bash
