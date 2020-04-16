@@ -203,9 +203,6 @@ You can change the mapping order by add a `rna_types` variable in `config/exampl
 rna_types: [spikein, univec, rRNA, lncRNA, mature_miRNA, miRNA, 
   mRNA, piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
-```bash
-exseek update_sequential_mapping -d example
-```
 
 #### Add new reference sequence
 
@@ -222,7 +219,7 @@ bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${r
 #### Mapping
 
 ```bash
-exseek.py mapping -d example
+exseek mapping -d example
 ```
 
 > **Note:**
