@@ -167,7 +167,7 @@ The summary for transcript types is listed below:
 You can check reads quality with FastQC by running:
 
 ```bash
-exseek.py quality_control -d example
+exseek quality_control -d example
 ```
 > **Note:**
 > * The detailed results for each sample are in folder `example_data/output/example/fastqc/`. 
@@ -177,7 +177,7 @@ exseek.py quality_control -d example
 exSEEK removes reads adaptor with cutadapt software. You can change the adaptor sequences in `example_data/config/example.yaml` file.
 
 ```bash
-exseek.py cutadapt -d example
+exseek cutadapt -d example
 ```
 > **Note:**
 > * You can change the additional parameters for cutadapt in `example_data/config/default_config.yaml` file. 
@@ -185,7 +185,7 @@ exseek.py cutadapt -d example
 
 #### Quality control \(after adapter removal\)
 ```bash
-exseek.py quality_control_clean -d example
+exseek quality_control_clean -d example
 ```
 > **Note:**
 > * The detailed results for each sample are in folder `example_data/output/example/fastqc_clean/`. 
@@ -194,17 +194,17 @@ exseek.py quality_control_clean -d example
 #### Update sequential mapping order
 The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
 ```yaml
-rna_types: [rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
-  snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
+rna_types: [univec, rRNA, lncRNA, mature_miRNA, miRNA, mRNA, 
+  piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
 
 You can change the mapping order by add a `rna_types` variable in `config/example.yaml`. For example, add spike-in sequences as the first RNA type:
 ```yaml
-rna_types: [spikein, rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
-  snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
+rna_types: [spikein, univec, rRNA, lncRNA, mature_miRNA, miRNA, 
+  mRNA, piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
 ```bash
-exseek.py update_sequential_mapping -d example
+exseek update_sequential_mapping -d example
 ```
 
 #### Add new reference sequence
