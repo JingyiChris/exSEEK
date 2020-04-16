@@ -163,6 +163,29 @@ The summary for transcript types is listed below:
 
 ### Small RNA-seq mapping
 
+#### Quality control \(before adaptor removal\)
+
+```bash
+exseek.py quality_control -d example
+```
+> **Note:**
+> * The detailed results for each sample are in folder `example_data/output/example/fastqc`. 
+> * You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
+
+#### Remove adapter
+
+```bash
+exseek.py cutadapt -d example
+```
+> **Note:**
+> * Make sure that you have added your adaptor information in `example_data/config/example.yaml` file. 
+> * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
+
+#### Quality control \(after adapter removal\)
+
+```bash
+exseek.py quality_control_clean -d example
+```
 #### Update sequential mapping order
 
 The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
@@ -190,30 +213,6 @@ samtools faidx ${genome_dir}/fasta/${rna_type}.fa
 Then build a bowtie2 index \(`${genome_dir}/index/bowtie2/${rna_type}`\):
 ```bash
 bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${rna_type}
-```
-
-#### Quality control \(before adaptor removal\)
-
-```bash
-exseek.py quality_control -d example
-```
-> **Note:**
-> * The detailed results for each sample are in folder `example_data/output/example/fastqc`. 
-> * You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
-
-#### Remove adapter
-
-```bash
-exseek.py cutadapt -d example
-```
-> **Note:**
-> * Make sure that you have added your adaptor information in `example_data/config/example.yaml` file. 
-> * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
-
-#### Quality control \(after adapter removal\)
-
-```bash
-exseek.py quality_control_clean -d example
 ```
 
 #### Mapping
