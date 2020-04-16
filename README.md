@@ -170,25 +170,28 @@ You can check reads quality with FastQC by running:
 exseek.py quality_control -d example
 ```
 > **Note:**
-> * The detailed results for each sample are in folder `example_data/output/example/fastqc`. 
-> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary`.
+> * The detailed results for each sample are in folder `example_data/output/example/fastqc/`. 
+> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary/fastqc_data/multiqc_fastqc.txt`.
 
 #### Remove adapter
+exSEEK removes reads adaptor with cutadapt software. You can change the adaptor sequences in `example_data/config/example.yaml` file.
 
 ```bash
 exseek.py cutadapt -d example
 ```
 > **Note:**
-> * Make sure that you have added your adaptor information in `example_data/config/example.yaml` file. 
+> * You can change the additional parameters for cutadapt in `example_data/config/default_config.yaml` file. 
 > * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
 
 #### Quality control \(after adapter removal\)
-
 ```bash
 exseek.py quality_control_clean -d example
 ```
-#### Update sequential mapping order
+> **Note:**
+> * The detailed results for each sample are in folder `example_data/output/example/fastqc_clean/`. 
+> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary/fastqc_clean_data/multiqc_fastqc.txt`.
 
+#### Update sequential mapping order
 The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
 ```yaml
 rna_types: [rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
