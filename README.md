@@ -164,13 +164,14 @@ The summary for transcript types is listed below:
 ### Small RNA-seq mapping
 
 #### Quality control \(before adaptor removal\)
+You can check reads quality with FastQC by running:
 
 ```bash
 exseek.py quality_control -d example
 ```
 > **Note:**
 > * The detailed results for each sample are in folder `example_data/output/example/fastqc`. 
-> * You can quickly check the summary results with the `fastqc.txt` file in `example_data/output/example/summary`.
+> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary`.
 
 #### Remove adapter
 
