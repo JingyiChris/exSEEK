@@ -200,9 +200,9 @@ rna_types: [univec, rRNA, lncRNA, mature_miRNA, miRNA, mRNA,
   piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
 
-You can change the mapping order based on the on the confidence of each RNA type for your samples by add a `rna_types` variable in `config/example.yaml`. For example, you can add spike-in sequences as the first RNA type:
+You can change the mapping order based on the confidence of each RNA type in your samples by adding a `rna_types` variable in `config/example.yaml`. For example, you can add spike-in sequences as the first RNA type:
 ```yaml
-rna_types: [spikein, univec, rRNA, lncRNA, mature_miRNA, miRNA, 
+rna_types: [spikein_small, univec, rRNA, lncRNA, mature_miRNA, miRNA, 
   mRNA, piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
 
