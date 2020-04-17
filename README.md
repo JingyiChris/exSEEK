@@ -146,18 +146,20 @@ The summary for transcript types is listed below:
 | RNA type | Number of transcripts |
 | :--- | :--- |
 | rRNA | 37 |
-| miRNA | 4573 |
+| mature_miRNA | 1984 |
+| miRNA | 1881 |
 | piRNA | 23431 |
-| snoRNA | 955 |
+| snoRNA | 943 |
 | snRNA | 1900 |
 | srpRNA | 680 |
 | tRNA | 649 |
-| mRNA | 146890 |
-| lncRNA | 27908 |
-| TUCP | 11550 |
+| mRNA | 19836 |
+| lncRNA | 15778 |
+| TUCP | 3734 |
 | Y_RNA | 756 |
 | univec | 6093 |
-| spikein | 52 |
+| spikein_long | 92 |
+| spikein_small | 52 |
 
 ---
 
