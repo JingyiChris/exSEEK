@@ -194,13 +194,13 @@ exseek quality_control_clean -d example
 > * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary/fastqc_clean_data/multiqc_fastqc.txt`.
 
 #### Update sequential mapping order
-The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
+exSEEK allows user-defined sequential mapping, which is particularly useful for small RNA-seq samples because short RNA reads are more likely to be mapped to multiple locations. The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
 ```yaml
 rna_types: [univec, rRNA, lncRNA, mature_miRNA, miRNA, mRNA, 
   piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
 ```
 
-You can change the mapping order by add a `rna_types` variable in `config/example.yaml`. For example, add spike-in sequences as the first RNA type:
+You can change the mapping order based on the on the confidence of each RNA type for your samples by add a `rna_types` variable in `config/example.yaml`. For example, you can add spike-in sequences as the first RNA type:
 ```yaml
 rna_types: [spikein, univec, rRNA, lncRNA, mature_miRNA, miRNA, 
   mRNA, piRNA, snoRNA, snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
@@ -219,7 +219,7 @@ bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${r
 ```
 
 #### Mapping
-
+exSEEK provides bowtie2 for mapping small RNA-seq. You can specify the `paired_end` parameter as `false` or `true` in `example_data/config/example.yaml`. The other parameters for mapping can be found in `example_data/config/default_config.yaml`.
 ```bash
 exseek mapping -d example
 ```
@@ -228,6 +228,8 @@ exseek mapping -d example
 > * Make sure that the parameter ***`small_rna`*** is ***`True`*** in `example_data/config/example.yaml`.
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
+> * The output folders `example_data/output/example/stats/mapped_read_length*/` contain the summary of read length distribution for each type of RNA.
+> * The output file `example_data/output/example/summary/read_counts.txt` is the summary of read counts mapped to all RNA types for all samples.
 > * You can check the read length distribution for each type of RNA in folder `example_data/output/example/stats/mapped_read_length/`.
 > * You can also check the summary of read counts mapped to all RNA types for all samples with the file `example_data/output/example/summary/read_counts.txt`.
 
