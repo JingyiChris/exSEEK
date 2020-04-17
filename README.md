@@ -228,24 +228,16 @@ exseek mapping -d example
 > * Make sure that the parameter ***`small_rna`*** is ***`True`*** in `example_data/config/example.yaml`.
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
-> * The output folders `example_data/output/example/stats/mapped_read_length*/` contain the summary of read length distribution for each type of RNA.
-> * The output file `example_data/output/example/summary/read_counts.txt` is the summary of read counts mapped to all RNA types for all samples.
-> * You can check the read length distribution for each type of RNA in folder `example_data/output/example/stats/mapped_read_length/`.
-> * You can also check the summary of read counts mapped to all RNA types for all samples with the file `example_data/output/example/summary/read_counts.txt`.
-
-#### Generate BigWig files
-
-```bash
-exseek.py bigwig -d example
-```
+> * The output folders `example_data/output/example/stats/mapped_read_length*/` contain the summary of read length distribution for each RNA type.
+> * The output file `example_data/output/example/summary/read_counts.txt` is the summary of read counts mapped to each RNA type for all samples.
 
 ---
 
 ### Peak calling
-
-exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (domains) of long exRNAs, such as mRNA and lncRNA. These called domains can be used to conduct differential expression analysis and combined into the following expression matrix and serve as potential biomarker candidates.
+exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (recurrently detected among samples， defined as domains) of long exRNAs (such as mRNA, srpRNA and lncRNA). These called domains can be combined into the expression matrix and serve as potential biomarker candidates.
 ```bash
-exseek.py call_domains -d example
+exseek bigwig -d example
+exseek call_domains -d example
 ```
 
 **Notes:**
