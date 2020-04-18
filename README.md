@@ -118,8 +118,8 @@ example_data/
 
 > **Note:**
 > * `config/example.yaml`: configuration file with frequently adjusted parameters, such as file paths and mapping parameters.
-> * `config/default_config.yaml`: configuration file with additional detailed parameters for each step. The default file is not supposed to be changed. If you want to adjust parameters contained in this file, you can add your adjusted parameters in `config/example.yaml`.
-> * `config/machine_learning.yaml`: configuration file with parameters used for feature selection and classification steps. If you want to adjust parameters contained in this file, you can add your adjusted parameters in `config/example.yaml`.
+> * `config/default_config.yaml`: configuration file with additional detailed parameters for each step. The default file is not supposed to be changed. If you want to adjust parameters contained in this file, it is **recommended** to add your adjusted parameters in `config/example.yaml`.
+> * `config/machine_learning.yaml`: configuration file with parameters used for feature selection and classification steps. It is **recommended** to add your adjusted parameters in `config/example.yaml` if you want to adjust parameters contained in this file.
 > * `data/example/batch_info.txt`: table of batch information.
 > * `data/example/compare_groups.yaml`: table for definition of positive and negative samples.
 > * `data/example/sample_classes.txt`: table of sample labels.
@@ -138,10 +138,10 @@ For mapping small RNA-seq, the index of each transcript type can be built with b
 ```bash
 exseek build_index -d example
 ```
-It might take hours to generate the index. It is **recommended** to specify the number of `threads` in `example_data/config/default_config.yaml` file.
-The output folder is `example_datat/genome/hg38/index/`.
+It might take hours to generate the index. It is **recommended** to specify the number of `threads` in `config/example.yaml` file by adding `threads: N`.
+The output folder is `genome/hg38/index/`.
 
-The detailed information for each transcript type is in `example_datat/genome/hg38/transcript_table/` directory.
+The detailed information for each transcript type is in `genome/hg38/transcript_table/` directory.
 The summary for transcript types is listed below:
 | RNA type | Number of transcripts |
 | :--- | :--- |
@@ -172,26 +172,26 @@ You can check reads quality with FastQC by running:
 exseek quality_control -d example
 ```
 > **Note:**
-> * The detailed results for each sample are in folder `example_data/output/example/fastqc/`. 
-> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary/fastqc_data/multiqc_fastqc.txt`.
+> * The detailed results for each sample are in folder `output/example/fastqc/`. 
+> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `output/example/summary/fastqc_data/multiqc_fastqc.txt`.
 
 #### Remove adapter
-exSEEK removes reads adaptor with cutadapt software. You can change the adaptor sequences in `example_data/config/example.yaml` file.
+exSEEK removes reads adaptor with cutadapt software. You can change the adaptor sequences in `config/example.yaml` file.
 
 ```bash
 exseek cutadapt -d example
 ```
 > **Note:**
-> * You can change the additional parameters for cutadapt in `example_data/config/default_config.yaml` file. 
-> * You can check the adaptor revmoval summary with `example_data/output/example/summary/cutadapt.txt` file.
+> * You can check the additional parameters for cutadapt in `config/default_config.yaml` file. 
+> * You can check the adaptor revmoval summary with `output/example/summary/cutadapt.txt` file.
 
 #### Quality control \(after adapter removal\)
 ```bash
 exseek quality_control_clean -d example
 ```
 > **Note:**
-> * The detailed results for each sample are in folder `example_data/output/example/fastqc_clean/`. 
-> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `example_data/output/example/summary/fastqc_clean_data/multiqc_fastqc.txt`.
+> * The detailed results for each sample are in folder `output/example/fastqc_clean/`. 
+> * You can quickly check the summary results for all samples with the `fastqc.txt` file in `output/example/summary/fastqc_clean_data/multiqc_fastqc.txt`.
 
 #### Update sequential mapping order
 exSEEK allows user-defined sequential mapping, which is particularly useful for small RNA-seq samples because short RNA reads are more likely to be mapped to multiple locations. The default mapping order is set as `rna_types` variable in `config/default_config.yaml`:
@@ -219,13 +219,13 @@ bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${r
 ```
 
 #### Mapping
-exSEEK provides bowtie2 for mapping small RNA-seq. You can specify the `paired_end` parameter as `false` or `true` in `example_data/config/example.yaml`. The other parameters for mapping can be found in `example_data/config/default_config.yaml`.
+exSEEK provides bowtie2 for mapping small RNA-seq. You can specify the `paired_end` parameter as `false` or `true` in `config/example.yaml`. The other parameters for mapping can be found in `config/default_config.yaml`.
 ```bash
 exseek mapping -d example
 ```
 
 > **Note:**
-> * Make sure that the parameter ***`small_rna`*** is ***`True`*** in `example_data/config/example.yaml`.
+> * Make sure that the parameter `small_rna` is ***`True`*** in `example_data/config/example.yaml`.
 > * The output folder `example_data/output/example/gbam` contains genome bam files.
 > * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
 > * The output folders `example_data/output/example/stats/mapped_read_length*/` contain the summary of read length distribution for each RNA type.
@@ -234,7 +234,7 @@ exseek mapping -d example
 ---
 
 ### Peak calling
-exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (recurrently detected among samples， defined as domains) of long exRNAs (such as mRNA, srpRNA and lncRNA). These called domains can be combined into the expression matrix and serve as potential biomarker candidates.
+exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (which are erecurrently detected among samples，defined as domains) of long exRNAs (such as mRNA, srpRNA and lncRNA). These called domains can be combined into the expression matrix and serve as potential biomarker candidates.
 ```bash
 exseek bigwig -d example
 exseek call_domains -d example
