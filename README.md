@@ -225,11 +225,11 @@ exseek mapping -d example
 ```
 
 > **Note:**
-> * Make sure that the parameter `small_rna` is ***`True`*** in `example_data/config/example.yaml`.
-> * The output folder `example_data/output/example/gbam` contains genome bam files.
-> * The output folder `example_data/output/example/tbam` contains transcriptome bam files for all types of RNA.
-> * The output folders `example_data/output/example/stats/mapped_read_length*/` contain the summary of read length distribution for each RNA type.
-> * The output file `example_data/output/example/summary/read_counts.txt` is the summary of read counts mapped to each RNA type for all samples.
+> * Make sure that the parameter `small_rna` is ***`True`*** in `config/example.yaml`.
+> * The output folder `output/example/gbam` contains genome bam files.
+> * The output folder `output/example/tbam` contains transcriptome bam files for all types of RNA.
+> * The output folders `output/example/stats/mapped_read_length*/` contain the summary of read length distribution for each RNA type.
+> * The output file `output/example/summary/read_counts.txt` is the summary of read counts mapped to each RNA type for all samples.
 
 ---
 
@@ -246,8 +246,8 @@ exseek call_domains -d example
 > * `cov_threshold: 0.05`: The proportion of samples that have the called peak. Peaks with cov_threshold higher than 0.05 are defined as domains. 
 
 * Output files:
-> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains all recurring peaks (domains).
-> * `example_data/output/example/domains_localmax/domains.bed` contains filtered (domains shorter than 10nt are filtered out) and merged domains. 
+> * `output/example/domains_localmax_recurrence/recurrence.bed` contains all recurring peaks (domains).
+> * `output/example/domains_localmax/domains.bed` contains filtered (domains shorter than 10nt are filtered out) and merged domains. 
 
 The `recurrence.bed` file looks like:
 | Transcript ID | TransStart | TransEnd | X | Frequency | Strand |
@@ -270,26 +270,24 @@ The `domains.bed` file looks like:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `config/example.yaml`. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
 
 ---
 
 ### Counting expression matrix
-
+exSEEK use featureCounts for counting expression matrix. 
 ```bash
 exseek.py count_matrix -d example
 ```
-```bash
-exseek.py combine_domains -d example
-```
 
 **Notes:**
-* The default methods for counting expression matrix includes:
-> * `mirna_and_domains`:
-> * `domains_long`:
-> * `transcript`:
-> * `transcript_mirna`:
-> * `domains_long`:
+* The ouput folder `output/example/count_matrix/` contains 4 types of expression matrix:
+> * | Name | Transcript type |
+| :--- | :--- |
+| transcript.txt | all full_length transcripts |
+| transcript_mirna.txt | only miRNA |
+| long_fragments.txt | recurring peaks (domain) |
+| mirna_and_long_fragments.txt | miRNA and recurring peaks (domain) |
 
 ---
 
