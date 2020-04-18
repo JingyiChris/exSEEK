@@ -312,7 +312,7 @@ exseek normalization -d example
 
 You can choose the best combination methods based on the ***UCA*** score and then ***mKNN*** score, which is summarized in folder: `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
 
-For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach **1**.
+The ***UCA*** metric quantifies the separation of samples from different biological groups, while the ***mKNN*** metric measures the uniformity of the distribution of samples from different batches. For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach **1**.
 
 The UCA score files look like this:
 | preprocess_method | uca_score |
