@@ -234,21 +234,20 @@ exseek mapping -d example
 ---
 
 ### Peak calling
-exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (which are erecurrently detected among samples，defined as domains) of long exRNAs (such as mRNA, srpRNA and lncRNA). These called domains can be combined into the expression matrix and serve as potential biomarker candidates.
+exSEEK provides local maximum-based peak calling methods for identifying recurring fragments (which are recurrently detected among samples，defined as domains) of long exRNAs (such as mRNA, srpRNA, and lncRNA). These called domains can be combined into the expression matrix and serve as potential biomarker candidates.
 ```bash
 exseek bigwig -d example
 exseek call_domains -d example
 ```
 
 **Notes:**
-* Domain calling parameters in `example_data/config/example.yaml`:
-> * `call_domain_pvalue: "05"`: adjusted p-value threshold for defining peaks.
+* Domain calling parameters in `config/default_config.yaml`:
 > * `bin_size: 20`: size of bins for calculating read coverage.
-> * `cov_threshold: 0.05`: The proportion of samples that have the called peak. Peaks with cov_threshold below 0.05 are filtered out. 
+> * `cov_threshold: 0.05`: The proportion of samples that have the called peak. Peaks with cov_threshold higher than 0.05 are defined as domains. 
 
 * Output files:
-> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains all before_merged recurring peaks (domains).
-> * `example_data/output/example/domains_localmax/domains.bed` contains after-merged recurring peaks (domains).
+> * `example_data/output/example/domains_localmax_recurrence/recurrence.bed` contains all recurring peaks (domains).
+> * `example_data/output/example/domains_localmax/domains.bed` contains filtered (domains shorter than 10nt are filtered out) and merged domains. 
 
 The `recurrence.bed` file looks like:
 | Transcript ID | TransStart | TransEnd | X | Frequency | Strand |
@@ -259,13 +258,13 @@ The `recurrence.bed` file looks like:
 | ENST00000366365.2 | 236 | 261 | X | 1 | + |
 
 The `domains.bed` file looks like:
-| Transcript ID | TransStart | TransEnd | After_merged Peak_ID | Weighted_ave_frequency | Strand |
+| Transcript ID | TransStart | TransEnd | filtered_merged Peak_ID | Weighted_ave_frequency | Strand |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | ENST00000006015.3 | 1506 | 1523 | peak_1 | 14.2353 | + |
-|ENST00000006015.3 | 1971 |1986 |peak_2 | 10 | + |
-|ENST00000008938.4 | 20 | 35 |peak_3 | 7 | + |
-|ENST00000025301.3 | 8580 | 8597 | peak_4 | 37.2353 | + |
-|ENST00000192788.5 | 2649 | 2665 | peak_5 | 72.5625 | + |
+| ENST00000006015.3 | 1971 |1986 | peak_2 | 10 | + |
+| ENST00000008938.4 | 20 | 35 | peak_3 | 7 | + |
+| ENST00000025301.3 | 8580 | 8597 | peak_4 | 37.2353 | + |
+| ENST00000192788.5 | 2649 | 2665 | peak_5 | 72.5625 | + |
 
 ---
 
