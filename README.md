@@ -307,12 +307,12 @@ exseek normalization -d example
 
 > **Notes:**
 > * When the method name is set to `null`, the step is skipped.
-> * `batch_index` is the column number (start from 1) of `config/example/batch_info.txt` to be used for ComBat batch removal.
+> * `batch_index` is the column index of `config/example/batch_info.txt` to be used for ComBat batch removal.
 > * The name pattern of **output** files in folder `example_data/output/example/matrix_processing` is: **`filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`**.
 
 You can choose the best combination methods based on the ***UCA*** score and then ***mKNN*** score, which is summarized in folder: `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
 
-The ***UCA*** metric quantifies the separation of samples from different biological groups, while the ***mKNN*** metric measures the uniformity of the distribution of samples from different batches. For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach **1**.
+The ***UCA*** metric quantifies the separation of samples from different biological groups, while the ***mKNN*** metric measures the uniformity of the distribution of samples from different batches. For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach ***1***.
 
 The UCA score files look like this:
 | preprocess_method | uca_score |
