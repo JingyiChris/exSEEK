@@ -308,13 +308,13 @@ exseek normalization -d example
 > **Notes:**
 > * When the method name is set to `null`, the step is skipped.
 > * `batch_index` is the column number (start from 1) of `config/example/batch_info.txt` to be used for ComBat batch removal.
-> * The name pattern of **output** files in folder ***`example_data/output/example/matrix_processing`*** is: ***`filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`***.
+> * The name pattern of **output** files in folder `example_data/output/example/matrix_processing` is: **`filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`**.
 
-You can choose the best combination methods based on the ***`UCA`*** score and then ***`mKNN`*** score, which is summarized in folder: `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
+You can choose the best combination methods based on the ***UCA*** score and then ***mKNN*** score, which is summarized in folder: `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
 
 For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach **1**.
 
-The `UCA` score files look like this:
+The UCA score files look like this:
 | preprocess_method | uca_score |
 | :--- | :--- |
 | filter.null.Norm_CPM_top.Batch_limma_1 | 0.578 |
@@ -322,7 +322,7 @@ The `UCA` score files look like this:
 | filter.null.Norm_CPM_top.Batch_ComBat_1 | 0.563 |
 | filter.null.Norm_CPM_top.Batch_RUV_1 | 0.564 | 
 
-And the `mKNN` score files look like this:
+And the mKNN score files look like this:
 | preprocess_method | knn_score |
 | :--- | :--- |
 | filter.null.Norm_CPM_top.Batch_limma_1 | 0.940 |
