@@ -283,11 +283,11 @@ exseek.py count_matrix -d example
 **Notes:**
 * The ouput folder `output/example/count_matrix/` contains 4 types of expression matrix:
 > * | Name | Transcript type |
-| :--- | :--- |
-| transcript.txt | all full_length transcripts |
-| transcript_mirna.txt | only miRNA |
-| long_fragments.txt | recurring peaks (domain) |
-| mirna_and_long_fragments.txt | miRNA and recurring peaks (domain) |
+> * | :--- | :--- |
+> * | transcript.txt | all full_length transcripts |
+> * | transcript_mirna.txt | only miRNA |
+> * | long_fragments.txt | recurring peaks (domain) |
+> * | mirna_and_long_fragments.txt | miRNA and recurring peaks (domain) |
 
 ---
 
