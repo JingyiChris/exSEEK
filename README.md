@@ -270,7 +270,7 @@ The `domains.bed` file looks like:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **2. Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `example_data/config/example.yaml`. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
 
 ---
 
