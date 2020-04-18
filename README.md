@@ -6,13 +6,13 @@ The exSEEK framework consists of:
 + Pre_processing:
    
    + Building index with various types of genomes and annotations. [`exseek build-index`]
-   + Quality control and removing adaptors. [`exseek quality_control`] [`exseek cutadapt`]
+   + Quality control and removing adaptors. [`exseek quality_control`] [`exseek cutadapt`] [`exseek quality_control_clean`]
    + Sequential mapping for small/long RNA-seq. [`exseek mapping`]
    + Counting expression matrix. [`exseek count_matrix`]
 
 + Main function:
    
-   + Peak calling for recurring fragments of long RNAs. [`exseek call_domains`]
+   + Peak calling for recurring fragments of long RNAs. [`exseek bigwig`] [`exseek call_domains`]
    + Normalization and batch removal. [`exseek normalization`]
    + Feature selection and classification. [`exseek feature_selection`]
    + Biomarker evaluation. [`exseek feature_selection`]
@@ -118,8 +118,8 @@ example_data/
 
 > **Note:**
 > * `config/example.yaml`: configuration file with frequently adjusted parameters, such as file paths and mapping parameters.
-> * `config/default_config.yaml`: configuration file with additional detailed parameters for each step.
-> * `config/machine_learning.yaml`: configuration file with parameters used for feature selection and classification step.
+> * `config/default_config.yaml`: configuration file with additional detailed parameters for each step. The default file is not supposed to be changed. If you want to adjust parameters contained in this file, you can add your adjusted parameters in `config/example.yaml`.
+> * `config/machine_learning.yaml`: configuration file with parameters used for feature selection and classification steps. If you want to adjust parameters contained in this file, you can add your adjusted parameters in `config/example.yaml`.
 > * `data/example/batch_info.txt`: table of batch information.
 > * `data/example/compare_groups.yaml`: table for definition of positive and negative samples.
 > * `data/example/sample_classes.txt`: table of sample labels.
@@ -146,16 +146,16 @@ The summary for transcript types is listed below:
 | RNA type | Number of transcripts |
 | :--- | :--- |
 | rRNA | 37 |
-| mature_miRNA | 1984 |
-| miRNA | 1881 |
-| piRNA | 23431 |
+| mature_miRNA | 2656 |
+| miRNA | 1917 |
+| piRNA | 23410 |
 | snoRNA | 943 |
 | snRNA | 1900 |
 | srpRNA | 680 |
 | tRNA | 649 |
 | mRNA | 19836 |
 | lncRNA | 15778 |
-| TUCP | 3734 |
+| TUCP | 3730 |
 | Y_RNA | 756 |
 | univec | 6093 |
 | spikein_long | 92 |
