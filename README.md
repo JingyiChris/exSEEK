@@ -293,10 +293,11 @@ exseek.py count_matrix -d example
 
 ### Normalization and batch removal
 
-exSEEK supports 5 normalization methods and 4 batch removal methods:
+exSEEK supports 5 normalization methods and 4 batch removal methods in `config/example.yaml`:
 ```yaml
 normalization_method: ["null", "TMM", "RLE", "CPM", "CPM_top", "null"]
 batch_removal_method: ["null", "ComBat", "limma", "RUV", "null"]
+count_method: [transcript, transcript_mirna, long_fragments, mirna_and_long_fragments]
 batch_index: 1
 ```
 
@@ -307,12 +308,15 @@ exseek normalization -d example
 
 > **Notes:**
 > * When the method name is set to `null`, the step is skipped.
-> * `batch_index` is the column index of `config/example/batch_info.txt` to be used for ComBat batch removal.
-> * The name pattern of **output** files in folder `example_data/output/example/matrix_processing` is: **`filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`**.
+> * You can specify the expression matrix type to be normalized via the `count_method` variable.
+> * `batch_index` is the column index of `data/example/batch_info.txt` to be used for ComBat batch removal.
+> * The name pattern of **output** files in folder `output/example/matrix_processing` is: **`filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}.txt`**.
 
-You can choose the best combination methods based on the ***UCA*** score and then ***mKNN*** score, which is summarized in folder: `example_data/output/example/select_preprocess_method/uca_score` and `example_data/output/example/select_preprocess_method/knn_score`.
+You can choose the best combination methods based on the ***UCA*** score and then ***mKNN*** score, which is summarized in folder: `output/example/select_preprocess_method/uca_score/` and `output/example/select_preprocess_method/knn_score`.
 
 The ***UCA*** metric quantifies the separation of samples from different biological groups, while the ***mKNN*** metric measures the uniformity of the distribution of samples from different batches. For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach ***1***.
+
+Or you can simply get the selected combination method listed in `output/example/select_preprocess_method/combined_score/${count_method}/selected_methods.txt`. 
 
 The UCA score files look like this:
 | preprocess_method | uca_score |
