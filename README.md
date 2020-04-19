@@ -316,8 +316,6 @@ You can choose the best combination methods based on the ***UCA*** score and the
 
 The UCA metric quantifies the separation of samples from different biological groups, while the mKNN metric measures the uniformity of the distribution of samples from different batches. For a perfectly corrected expression matrix, both the ***UCA*** score and the ***mKNN*** score approach ***1***.
 
-Or you can simply get the selected combination method listed in `output/example/select_preprocess_method/combined_score/${count_method}/selected_methods.txt`. 
-
 The UCA score files look like this:
 | preprocess_method | uca_score |
 | :--- | :--- |
@@ -335,6 +333,8 @@ And the mKNN score files look like this:
 | filter.null.Norm_CPM_top.Batch_RUV_1 | 0.927 | 
 
 After deciding the most proper combination of normalization and batch removal methods, you can specify the exact normalization method by setting the value of `normalization_method` and the batch removal method by setting the value of `batch_removal_method` in `config/sample.yaml`.
+
+***Alternatively, you can simply get the best performance combination method (the highest averaged UCA and mKNN score) listed in `output/example/select_preprocess_method/combined_score/${count_method}/selected_methods.txt`, and matrix normalized by this method will be used for the next step.***
 
 ---
 
