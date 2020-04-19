@@ -342,28 +342,26 @@ After deciding the most proper combination of normalization and batch removal me
 
 This step identifies and evaluates exRNA biomarker panels selected by various combinations of feature selection methods and machine learning classifiers. 
 
-exSEEK supported feature selection methods:
-```bash
-[DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, 
-MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, 
-RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
+exSEEK supported feature selection and classification methods:
+```yaml
+selector: [DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, 
+  MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, 
+  RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
+
+classifier: [LogRegL2, RandomForest, RBFSVM, DecisionTree, MLP]
 ```
 
-exSEEK supported classifiers:
-```bash
-[LogRegL2, RandomForest, RBFSVM, DecisionTree, MLP]
-```
-
-You can evaluate all combinations of feature selection methods and classifiers by cross-validation:
+You can evaluate all combinations of feature selection and classification methods based on the cross-validation results by running:
 ```bash
 exseek feature_selection -d example
 ```
 
 > **Note:**
-> * The detailed parameters of feature selection and machine learning can be found in file:
-`config/machine_learning.yaml`. 
+> * You can adjust the maximum number of selected features `n_features_to_select` in `config/example.yaml`.
+> * You can setup the comparison groups for classification in `data/example/compare_groups.yaml`.
+> * The detailed parameters of machine learning can be found in `config/default_congfig.yaml`. 
 > * The cross-validation results and trained models for individual combinations are in this directory:
-***`output/example/cross_validation/filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`***.
+**`output/example/cross_validation/filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`**.
 > * Selected features (biomarker panels) for each combination can be found in `features.txt` in the above mentioned directory.
 
 Three summary files will be generated in this step:
