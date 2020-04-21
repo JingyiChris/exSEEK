@@ -138,7 +138,7 @@ For mapping small RNA-seq, the index of each transcript type can be built with b
 ```bash
 exseek build_index -d example
 ```
-It might take hours to generate the index. It is **recommended** to specify the number of `threads` in `config/example.yaml` file by adding `threads: N`.
+It might take hours to generate the index. It is **recommended** to specify the number of threads in `config/example.yaml` file by adding `threads: N`, or you can simply add `-j N` parameter in the exseek command.
 The output folder is `genome/hg38/index/`.
 
 The detailed information for each transcript type is in `genome/hg38/transcript_table/` directory.
@@ -219,7 +219,7 @@ bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${r
 ```
 
 #### Mapping
-exSEEK provides bowtie2 for mapping small RNA-seq. You can specify the `paired_end` parameter as `false` or `true` in `config/example.yaml`. The other parameters for mapping can be found in `config/default_config.yaml`.
+exSEEK provides bowtie2 for mapping small RNA-seq. You can specify the `paired_end` parameter as `false` or `true` in `config/example.yaml`. It is **recommended** to specify the number of threads in `config/example.yaml` file by adding `threads_mapping: N`, or you can simply add `-j N` parameter in the exseek command. The other parameters for mapping can be found in `config/default_config.yaml`.
 ```bash
 exseek mapping -d example
 ```
@@ -270,7 +270,7 @@ The `domains.bed` file looks like this:
 
 ### Long RNA-seq mapping
 
-The methods for long RNA-seq mapping are very similar to **Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `config/example.yaml`. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
+The methods for long RNA-seq mapping are very similar to **Small RNA-seq mapping**. You can use the above command lines for long RNA-seq by setting ***`small_rna`*** to ***`False`*** in file `config/example.yaml`. It is **recommended** to specify the number of threads in `config/example.yaml` file by adding `threads_mapping: N`, or you can simply add `-j N` parameter in the exseek command. There is no peak calling step for long RNA-seq datasets because recurring fragment (domain) is not a distinctive feature of extracellular long RNA-seq datasets. 
 
 ---
 
