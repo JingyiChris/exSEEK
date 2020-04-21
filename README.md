@@ -58,14 +58,14 @@ A helper message is shown:
 usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
                  [--cluster-config CLUSTER_CONFIG]
                  [--cluster-command CLUSTER_COMMAND] [--singularity]  
-                 {build_index,quality_control,cutadapt,quality_control_clean,update_sequential_mapping,
-                 mapping,call_domains,combine_domains,count_matrix,normalization,feature_selection}
+                 {build_index,quality_control,cutadapt,quality_control_clean,mapping,
+                 call_domains,count_matrix,normalization,feature_selection}
 
 exseek main program
 
 positional arguments:
-  {build_index,quality_control,cutadapt,quality_control_clean,update_sequential_mapping,mapping,
-  call_domains,combine_domains,count_matrix,normalization,feature_selection}
+  {build_index,quality_control,cutadapt,quality_control_clean,mapping,
+  call_domains,count_matrix,normalization,feature_selection}
 
 optional arguments:
   -h, --help                                    show this help message and exit
