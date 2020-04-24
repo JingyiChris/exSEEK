@@ -8,11 +8,11 @@ The exSEEK framework consists of:
    + Building index with various types of genomes and annotations. [`exseek build-index`]
    + Quality control and removing adaptors. [`exseek quality_control`] [`exseek cutadapt`] [`exseek quality_control_clean`]
    + Sequential mapping for small/long RNA-seq. [`exseek mapping`]
-   + Counting expression matrix. [`exseek count_matrix`]
 
 + Main function:
    
    + Peak calling for recurring fragments of long RNAs. [`exseek bigwig`] [`exseek call_domains`]
+   + Counting expression matrix. [`exseek count_matrix`]
    + Normalization and batch removal. [`exseek normalization`]
    + Feature selection and classification. [`exseek feature_selection`]
    + Biomarker evaluation. [`exseek feature_selection`]
