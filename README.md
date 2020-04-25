@@ -350,9 +350,7 @@ This step identifies and evaluates exRNA biomarker panels selected by various co
 
 exSEEK supported feature selection and classification methods:
 ```yaml
-selector: [DiffExp_TTest, MaxFeatures_RandomForest, MaxFeatures_LogRegL1, 
-  MaxFeatures_LogRegL2, MaxFeatures_ElasticNet, RandomSubset_RandomForest, 
-  RandomSubset_LogRegL1, RandomSubset_LogRegL2, SIS, ReliefF, SURF, MultiSURF]
+selector: [DiffExp_TTest, RandomForest, LogRegL1, LogRegL2, SIS, ReliefF, SURF, MultiSURF]
 
 classifier: [LogRegL2, RandomForest, RBFSVM, DecisionTree, MLP]
 ```
@@ -368,7 +366,7 @@ exseek feature_selection -d example
 > * The detailed parameters of machine learning can be found in `config/default_congfig.yaml`. 
 > * The cross-validation results and trained models for individual combinations are in this directory:
 **`output/example/cross_validation/filter.null.Norm_${normalization_method}.Batch_${batch_removal_method}_${batch_index}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}`**.
-> * Selected features (biomarker panels) for each model can be found in `features.txt` in the above mentioned directory.
+> * Selected features (biomarker panels) for each model can be found in `features.txt` in the above-mentioned directory.
 
 Three summary files will be generated in this step:
 ```bash
