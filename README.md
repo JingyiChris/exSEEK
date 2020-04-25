@@ -301,7 +301,7 @@ exseek.py count_matrix -d example
 
 exSEEK supports 5 normalization methods and 4 batch removal methods in `config/example.yaml`:
 ```yaml
-normalization_method: ["null", "TMM", "RLE", "CPM", "CPM_top", "null"]
+normalization_method: ["TMM", "RLE", "CPM", "CPM_top", "null"]
 batch_removal_method: ["null", "ComBat", "limma", "RUV", "null"]
 count_method: [transcript, transcript_mirna, long_fragments, mirna_and_long_fragments, featurecounts(for long RNA-seq)]
 batch_index: 1
