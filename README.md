@@ -398,7 +398,3 @@ The `feature_stability.txt` file looks like:
 Copyright (C) 2019 Tsinghua University, Beijing, China 
 
 This program is licensed with commercial restriction use license. Please see the [LICENSE](https://github.com/lulab/exSEEK_docs/blob/master/LICENSE) file for details.
-
-## Citation
-
-Binbin Shi, Jingyi Cao, Xupeng Chen and Zhi John Lu (2019) exSEEK: an integrative computational framework for identifying extracellular
